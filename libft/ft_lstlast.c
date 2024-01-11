@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 16:32:49 by yublee            #+#    #+#             */
-/*   Updated: 2024/01/10 19:16:29 by yublee           ###   ########.fr       */
+/*   Created: 2023/11/18 14:31:09 by yublee            #+#    #+#             */
+/*   Updated: 2023/11/20 14:38:12 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+t_list	*ft_lstlast(t_list *lst)
 {
-//check error if error gain
-	if (ft_input_check(argc, argv))
-		exit(1);
-//if no error creating stack a from input
-//	ft_create_stack(argv);
-//scan the number
-//choose argorithm
-//if all sorted
-//print out the actions executed
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

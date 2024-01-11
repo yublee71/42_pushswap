@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_process.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 19:12:26 by yublee            #+#    #+#             */
-/*   Updated: 2024/01/10 19:16:26 by yublee           ###   ########.fr       */
+/*   Created: 2024/01/10 16:32:49 by yublee            #+#    #+#             */
+/*   Updated: 2024/01/11 19:49:41 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-bool	ft_input_check(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	if (argc == 1)
-	//give prompt back??
-		exit (1);
-	else
-	//all integer check
-		printf("%s",argv[0]);
-	return(0);
+	ft_is_input_valid(argc, argv);
+//check error if error gain
+//	if (ft_input_check(argc, argv))
+//		ft_get_list(argc, argv);
+//if no error creating stack a from input
+//	ft_create_stack(argv);
+//scan the number
+//choose argorithm
+//if all sorted
+//print out the actions executed
 }
