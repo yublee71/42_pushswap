@@ -24,7 +24,7 @@ bool	ft_input_duplicate_check(int argc, char *argv[])
 		j = i + 1;
 		while (j < argc)
 		{
-			if (!ft_strncmp(argv[i], argv[j], 10))
+			if (!ft_strncmp(argv[i], argv[j], 11))
 			{
 				ft_printf("error\n");
 				exit (1);
