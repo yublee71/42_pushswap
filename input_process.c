@@ -10,7 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-bool	ft_input_check(int argc, char *argv)
-{
+#include "push_swap.h"
+#include <stdio.h>
 
+bool	ft_input_check(int argc, char *argv[])
+{
+	if (argc == 1)
+	//give prompt back??
+		exit (1);
+	else
+	//all integer check
+		printf("%s",argv[0]);
+	return(0);
 }

@@ -10,14 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 #include <stdio.h>
 
 int	main(int argc, char *argv[])
 {
 //check error if error gain
-	ft_input_check(argc, argv);
+	if (ft_input_check(argc, argv))
+		exit(1);
 //if no error creating stack a from input
-	ft_create_stack(argv);
+//	ft_create_stack(argv);
 //scan the number
 //choose argorithm
 //if all sorted
