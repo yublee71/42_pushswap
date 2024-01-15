@@ -19,8 +19,15 @@
 # include <stdlib.h>
 # include <limits.h>
 
-bool	ft_input_duplicate_check(int argc, char *argv[]);
-bool	ft_input_digit_check(int argc, char *argv[]);
-bool	ft_is_input_valid(int argc, char *argv[]);
+typedef struct s_stack
+{
+	struct s_stack	*next;
+	int				num;
+	int				rank;
+}	t_stack;
+
+int		*ft_input_convert_to_int(int argc, char *argv[]);
+void	ft_input_duplicate_check(int *input_int, int argc);
+t_stack	**ft_int_to_stack(int *input_int, int argc);
 
 #endif

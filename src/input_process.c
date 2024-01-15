@@ -13,19 +13,20 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-bool	ft_input_duplicate_check(int argc, char *argv[])
+void	ft_input_duplicate_check(int *input_int, int argc)
 {
 	int	i;
 	int	j;
 
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (i < argc - 1)
 	{
 		j = i + 1;
-		while (j < argc)
+		while (j < argc - 1)
 		{
-			if (!ft_strncmp(argv[i], argv[j], 11))
+			if (input_int[i] == input_int[j])
 			{
+				free(input_int);
 				ft_printf("error\n");
 				exit (1);
 			}
@@ -33,42 +34,37 @@ bool	ft_input_duplicate_check(int argc, char *argv[])
 		}
 		i++;
 	}
-	return (1);
 }
 
-bool	ft_input_digit_check(int argc, char *argv[])
+int	*ft_input_convert_to_int(int argc, char *argv[])
 {
-	int	i;
-	int	j;
+	int	i; //size_t?
+	int	j; //size_t?
+	int	error_flag;
+	int	*input_int;
 
-	i = 1;
+	i = 1;	
+	input_int = malloc((argc - 1) * sizeof(int));
 	while (i < argc)
 	{
-		j = 0;
+		j = 0;	
+		error_flag = 0;	
+		if (argv[i][j] == '0' && argv[i][j + 1])
+			error_flag = 1;
+		if (argv[i][j] == '-' && ft_isdigit(argv[i][j + 1]) && argv[i][j + 1] != '0')
+			j++;
 		while (argv[i][j])
 		{
-			if (!ft_isdigit(argv[i][j]) || j > 10)
+			if (error_flag || !ft_isdigit(argv[i][j]))
 			{
+				free(input_int);
 				ft_printf("error\n");
 				exit (1);
 			}
 			j++;
 		}
+		input_int[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
-	return (1);
-}
-
-bool	ft_is_input_valid(int argc, char *argv[])
-{
-	if (argc == 1)
-	//give prompt back??
-		exit (1);
-	else
-	{
-		if (ft_input_digit_check(argc, argv) &&
-				ft_input_duplicate_check(argc, argv))
-			return (1);
-	}
-	return (0);
+	return (input_int);
 }
