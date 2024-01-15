@@ -13,82 +13,67 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-t_stack **ft_int_to_stack(int *input_int, int argc)
-{
-	t_stack	**stack_a;
-	t_stack	*new_node;
-	t_stack	*head;
-	t_stack	*current;
-	int		i;
-
-	i = 0;
-	new_node = ft_stacknew(input_int[i++]);
-	head = new_node;
-	stack_a = &head;
-	while (i < argc - 1)
-	{
-		current = new_node;
-		new_node = ft_stacknew(input_int[i++]);
-		current->next = new_node;
-		new_node->prev = current;
-	}
-	new_node->next = head;
-	head->prev = new_node;
-	return (stack_a);
-}
-
-void	ft_input_duplicate_check(int *input_int, int argc)
+bool	ft_input_duplicate_check(int argc, char *argv[])
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < argc - 1)
-	{
-		j = i + 1;
-		while (j < argc - 1)
-		{
-			if (input_int[i] == input_int[j])
-			{
-				free(input_int);
-				ft_printf("error\n");
-				exit (1);
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-int	*ft_input_convert_to_int(int argc, char *argv[])
-{
-	int	i; //size_t?
-	int	j; //size_t?
-	int	error_flag;
-	int	*input_int;
-
-	i = 1;	
-	input_int = (int *)malloc((argc - 1) * sizeof(int));
+	i = 1;
 	while (i < argc)
 	{
-		j = 0;	
-		error_flag = 0;	
-		if (argv[i][j] == '0' && argv[i][j + 1])
-			error_flag = 1;
-		if (argv[i][j] == '-' && ft_isdigit(argv[i][j + 1]) && argv[i][j + 1] != '0')
-			j++;
-		while (argv[i][j])
+		j = i + 1;
+		while (j < argc)
 		{
-			if (error_flag || !ft_isdigit(argv[i][j]))
+			if (!ft_strncmp(argv[i], argv[j], 11))
 			{
-				free(input_int);
 				ft_printf("error\n");
 				exit (1);
 			}
 			j++;
 		}
-		input_int[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
-	return (input_int);
+	return (1);
+}
+
+bool	ft_input_digit_check(int argc, char *argv[])
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < argc)
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] == '-' && j == 0 && argv[i][j + 1] && ft_isdigit(argv[i][j + 1]))
+			{
+				j++;
+				continue;
+			}
+			if (!ft_isdigit(argv[i][j]) || j > 10)
+			{
+				ft_printf("error\n");
+				exit (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+bool	ft_is_input_valid(int argc, char *argv[])
+{
+	if (argc == 1)
+	//give prompt back??
+		exit (1);
+	else
+	{
+		if (ft_input_digit_check(argc, argv) &&
+				ft_input_duplicate_check(argc, argv))
+			return (1);
+	}
+	return (0);
 }

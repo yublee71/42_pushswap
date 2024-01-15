@@ -29,6 +29,7 @@ NAME = push_swap
 #needs editing later
 SRC = src/input_process.c \
 	src/main.c \
+	src/stack_list.c \
 	printf/ft_print_int.c \
 	printf/ft_print_str.c \
 	printf/ft_print_unsigned.c \
