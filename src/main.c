@@ -31,18 +31,28 @@ int	main(int argc, char *argv[])
 	printf("num is :%d\n",((*stack_a)->next)->num);
 	printf("num is :%d\n",(((*stack_a)->next)->next)->num);
 	printf("num is :%d\n",((((*stack_a)->next)->next)->next)->num);
+	printf("num is :%d\n",(((((*stack_a)->next)->next)->next)->next)->num);
 	stack_a = ft_rotate(stack_a);
 	printf("after rotate\n");
 	printf("num is :%d\n",(*stack_a)->num);
 	printf("num is :%d\n",((*stack_a)->next)->num);
 	printf("num is :%d\n",(((*stack_a)->next)->next)->num);
 	printf("num is :%d\n",((((*stack_a)->next)->next)->next)->num);
+	printf("num is :%d\n",(((((*stack_a)->next)->next)->next)->next)->num);
 	stack_a = ft_reverse_rotate(stack_a);
 	printf("after reverse rotate\n");
 	printf("num is :%d\n",(*stack_a)->num);
 	printf("num is :%d\n",((*stack_a)->next)->num);
 	printf("num is :%d\n",(((*stack_a)->next)->next)->num);
 	printf("num is :%d\n",((((*stack_a)->next)->next)->next)->num);
+	printf("num is :%d\n",(((((*stack_a)->next)->next)->next)->next)->num);
+	stack_a = ft_swap(stack_a);
+	printf("after swap\n");
+	printf("num is :%d\n",(*stack_a)->num);
+	printf("num is :%d\n",((*stack_a)->next)->num);
+	printf("num is :%d\n",(((*stack_a)->next)->next)->num);
+	printf("num is :%d\n",((((*stack_a)->next)->next)->next)->num);
+	printf("num is :%d\n",(((((*stack_a)->next)->next)->next)->next)->num);
 	/*
 	printf("num is :%d\n",(*stack_a)->num);
 	printf("num is :%d\n",((*stack_a)->prev)->num);
@@ -53,6 +63,7 @@ int	main(int argc, char *argv[])
 //choose argorithm
 //if all sorted
 //print out the actions executed
-//	free(stack_a);
+//free stacks;
+	free(input_int);
 	return (0);
 }

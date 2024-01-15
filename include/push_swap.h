@@ -32,5 +32,6 @@ t_stack	**ft_int_to_stack(int *input_int, int argc);
 t_stack	*ft_stacknew(int content);
 t_stack	**ft_rotate(t_stack **stack);
 t_stack	**ft_reverse_rotate(t_stack **stack);
+t_stack	**ft_swap(t_stack **stack);
 
 #endif
