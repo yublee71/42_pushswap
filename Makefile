@@ -44,13 +44,13 @@ LIBFT_LIB = $(LIBFT_DIR)/libft.a
 all: $(NAME)
 
 $(NAME): $(LIBFT_LIB) $(OBJ) $()
-	$(CC) -L$(LIBFT_DIR) $(OBJ) -o $@ -lft
+	$(CC) -L$(LIBFT_DIR) $(OBJ) -g -o $@ -lft
 
 $(LIBFT_LIB):
 	make -C $(LIBFT_DIR)
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) $(INCLUDE) $< -o $@
+	$(CC) -c $(CFLAGS) $(INCLUDE) $< -g -o $@
 
 clean:
 	$(RM) $(RMFLAGS) $(OBJ)

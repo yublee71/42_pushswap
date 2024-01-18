@@ -13,30 +13,6 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-t_stack **ft_int_to_stack(int *input_int, int argc)
-{
-	t_stack	**stack_a;
-	t_stack	*new_node;
-	t_stack	*head;
-	t_stack	*current;
-	int		i;
-
-	i = 0;
-	new_node = ft_stacknew(input_int[i++]);
-	head = new_node;
-	stack_a = &head;
-	while (i < argc - 1)
-	{
-		current = new_node;
-		new_node = ft_stacknew(input_int[i++]);
-		current->next = new_node;
-		new_node->prev = current;
-	}
-	new_node->next = head;
-	head->prev = new_node;
-	return (stack_a);
-}
-
 void	ft_input_duplicate_check(int *input_int, int argc)
 {
 	int	i;
@@ -90,5 +66,7 @@ int	*ft_input_convert_to_int(int argc, char *argv[])
 		input_int[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
+//	printf("done well? :%d\n", input_int[0]);
+//	printf("done well? :%d\n", input_int[1]);
 	return (input_int);
 }
