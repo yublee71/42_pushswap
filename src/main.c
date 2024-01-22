@@ -38,13 +38,18 @@ int	main(int argc, char *argv[])
 	stack_b = (t_stack **)malloc(sizeof(t_stack**));
 	head_b = NULL;
 	stack_b = &head_b;
-//	ft_stack_print(stack_a);
-//	ft_stack_print(stack_b);
+	ft_swap(stack_a);
 	ft_push(stack_a, stack_b);
-//	printf("%d\n",(*stack_a)->num);
+	ft_push(stack_a, stack_b);
+	ft_push(stack_a, stack_b);
+	ft_swap(stack_a);
+	ft_push(stack_b, stack_a);
+	ft_push(stack_b, stack_a);
+	ft_push(stack_b, stack_a);
+	ft_printf("stack a is below\n");
 	ft_stack_print(stack_a);
+	ft_printf("stack b is below\n");
 	ft_stack_print(stack_b);
-
 	/*
 	ft_stack_print(stack_a);
 	ft_printf("after rotate >\n");
@@ -65,7 +70,7 @@ int	main(int argc, char *argv[])
 //if all sorted
 //print out the actions executed
 //free stacks;
-	free(input_int);
+//	free(input_int);
 	}
 	return (0);
 }

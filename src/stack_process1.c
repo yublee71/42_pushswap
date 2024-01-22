@@ -18,7 +18,9 @@ void	ft_stack_print(t_stack **stack)
 	t_stack	*temp;
 
 	temp = *stack;
-	while (1)
+	if (!temp)
+		ft_printf("empty\n");
+	while (1 && temp)
 	{
 		ft_printf("number is: %d\n",temp->num);
 		ft_printf("rank is: %d\n",temp->rank);

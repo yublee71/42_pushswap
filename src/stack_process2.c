@@ -19,21 +19,29 @@ void	ft_push(t_stack **stack_from, t_stack **stack_to)
 	t_stack *temp2;
 	t_stack *loc_temp;
 
-	if (stack_from == NULL)
+	if (*stack_from == NULL)
 		return ;
 	temp = *stack_from;
-	(temp->prev)->next = temp->next;
-	(temp->next)->prev = temp->prev;
-	*stack_from = temp->next;
-	loc_temp = *stack_from;
-	while (!loc_temp->end)
+	if (!temp->end)
 	{
+		(temp->prev)->next = temp->next;
+		(temp->next)->prev = temp->prev;
+		*stack_from = temp->next;
+		loc_temp = *stack_from;
+		while (!loc_temp->end)
+		{
+			loc_temp->location -= 1;
+			loc_temp = loc_temp->next;
+		}
 		loc_temp->location -= 1;
-		loc_temp = loc_temp->next;
+	}
+	else
+	{
+		*stack_from = NULL;
+		temp->end = 0;
 	}
 	if (*stack_to != NULL)
 	{
-		loc_temp->location -= 1;
 		loc_temp = *stack_to;
 		while (!loc_temp->end)
 		{
@@ -42,10 +50,10 @@ void	ft_push(t_stack **stack_from, t_stack **stack_to)
 		}
 		loc_temp->location += 1;
 		temp2 = *stack_to;
-		(temp2->prev)->next = temp;
 		temp->next= temp2;
-		temp2->prev= temp;
 		temp->prev= temp2->prev;
+		(temp2->prev)->next = temp;
+		temp2->prev= temp;
 		*stack_to = temp;
 	}
 	else
@@ -55,6 +63,7 @@ void	ft_push(t_stack **stack_from, t_stack **stack_to)
 		temp->prev = temp;
 		temp->end = 1;
 	}
+	ft_printf("<<p>>\n");
 }
 
 void	ft_rotate(t_stack **stack)
@@ -73,6 +82,7 @@ void	ft_rotate(t_stack **stack)
 	temp->end = 0;
 	(*stack)->end = 1;
 	*stack = (*stack)->next;
+	ft_printf("<<r>>\n");
 }
 
 void	ft_reverse_rotate(t_stack **stack)
@@ -89,6 +99,7 @@ void	ft_reverse_rotate(t_stack **stack)
 	(temp)->location = 0;
 	(temp)->end = 0;
 	*stack=(*stack)->prev;
+	ft_printf("<<rr>>\n");
 }
 
 void	ft_swap(t_stack **stack)
@@ -97,7 +108,9 @@ void	ft_swap(t_stack **stack)
 	t_stack	*second;
 	t_stack	*third;
 	t_stack	*last;
+	t_stack	*temp;
 
+	temp = *stack;
 	first = *stack;
 	second = (*stack)->next;
 	third = ((*stack)->next)->next;
@@ -110,5 +123,11 @@ void	ft_swap(t_stack **stack)
 	second->prev = last;
 	second->location = 0;
 	first->location = 1;
-	*stack = (*stack)->next;
+	if (second->end)
+	{
+		second->end = 0;
+		first->end = 1;
+	}
+	*stack = temp->prev;
+	ft_printf("<<s>>\n");
 }
