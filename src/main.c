@@ -16,28 +16,37 @@
 int	main(int argc, char *argv[])
 {
 	int 	*input_int;
+	int 	*rank_int;
 	t_stack **stack_a;
-	t_stack **stack_b;
 	t_stack *head_a;
-	t_stack *head_b;
+	int		i;
+//	t_stack **stack_b;
+//	t_stack *head_b;
 
+	i = 0;
 	//if no input, give back prompt
 	if (argc == 1)
 		return (1);
-	//if input, convert to int array && check digit
+	//if input number is more than 1,
 	if (argc > 2)
 	{
+		//convert to int array && check digit
 		input_int = ft_input_convert_to_int(argc, argv);
-	//check duplicate
-		ft_input_duplicate_check(input_int, argc);
-	//convert int array to double&circle list
+		//check duplicate
+		ft_input_duplicate_check(input_int, argc); //need to modify to argc - 1
+		//convert int array to rank array
+		rank_int = ft_rank(input_int, argc - 1);
+		while (i < argc - 1)
+			ft_printf("%d, ", rank_int[i++]);
+		ft_printf("\n");
+		//convert array to double&circle list
 		stack_a = (t_stack **)malloc(sizeof(t_stack**));
-		head_a = ft_int_to_stack(input_int, argc - 1);
+		head_a = ft_int_to_stack(input_int, argc - 1); //integrate rank too
 		stack_a = &head_a;
-
-	stack_b = (t_stack **)malloc(sizeof(t_stack**));
-	head_b = NULL;
-	stack_b = &head_b;
+		ft_swap(stack_a);
+//		stack_b = (t_stack **)malloc(sizeof(t_stack**));
+//		head_b = NULL;
+//		stack_b = &head_b;
 
 	/*example1 with 2 1 3 6 5 8
 	ft_swap(stack_a);
@@ -66,11 +75,11 @@ int	main(int argc, char *argv[])
 	ft_stack_print(stack_b);
 	*/
 
-//scan the number
-//choose argorithm
-//if all sorted
-//print out the actions executed
-//free stacks;
+	//scan the number
+	//choose argorithm
+	//if all sorted
+	//print out the actions executed
+	//free stacks;
 	}
 	return (0);
 }
