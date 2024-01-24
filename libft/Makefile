@@ -6,13 +6,15 @@
 #    By: yublee <yublee@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 14:44:19 by yublee            #+#    #+#              #
-#    Updated: 2023/12/07 17:16:30 by yublee           ###   ########.fr        #
+#    Updated: 2024/01/24 18:46:30 by yublee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+DIRS			:= printf std bonus
+
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -I
+CFLAGS = -Wall -Wextra -Werror
 
 RM = rm
 
@@ -22,83 +24,37 @@ AR = ar
 
 ARFLAGS = rcs
 
-INCLUDE = ../include
+INCLUDE = -I.
 
 NAME = libft.a
 
-SRC = ft_isalpha.c \
-	  ft_isdigit.c \
-	  ft_isalnum.c \
-	  ft_isascii.c \
-	  ft_isprint.c \
-	  ft_strlen.c \
-	  ft_memset.c \
-	  ft_bzero.c \
-	  ft_memcpy.c \
-	  ft_memmove.c \
-	  ft_strlcpy.c \
-	  ft_strlcat.c \
-	  ft_toupper.c \
-	  ft_tolower.c \
-	  ft_strchr.c \
-	  ft_strrchr.c \
-	  ft_strncmp.c \
-	  ft_memchr.c \
-	  ft_memcmp.c \
-	  ft_strnstr.c \
-	  ft_atoi.c \
-	  ft_calloc.c \
-	  ft_strdup.c \
-	  ft_substr.c \
-	  ft_strjoin.c \
-	  ft_strtrim.c \
-	  ft_split.c \
-	  ft_itoa.c \
-	  ft_strmapi.c \
-	  ft_striteri.c \
-	  ft_putchar_fd.c \
-	  ft_putstr_fd.c \
-	  ft_putendl_fd.c \
-	  ft_putnbr_fd.c
+SRC := 
+BONUS_SRC := 
 
-BONUS_SRC = ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c
+include $(addsuffix /Makefile.mk,$(DIRS))
 
-OBJ = $(SRC:.c=.o)
+BUILD_DIR		= build
 
-BONUS_OBJ = $(BONUS_SRC:.c=.o)
+OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)
+BOBJ = $(BONUS_SRC:%.c=$(BUILD_DIR)/%.o)
 
 all: $(NAME)
 
-$(NAME): .make_mandatory
+$(NAME): $(BUILD_DIR) $(OBJ) $(BOBJ)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJ) $(BOBJ)
 
-bonus: .make_bonus
+$(BUILD_DIR):
+		mkdir -pv $(BUILD_DIR) $(patsubst %,$(BUILD_DIR)/%,$(DIRS))
 
-.make_mandatory: $(OBJ)
-	$(AR) $(ARFLAGS) $(NAME) $^
-	touch $@
-
-.make_bonus: $(BONUS_OBJ)
-	$(AR) $(ARFLAGS) $(NAME) $^
-	touch $@
-
-%.o: %.c
-	$(CC) -c $(CFLAGS) $(INCLUDE) $< -o $@
+$(BUILD_DIR)/%.o:	%.c
+	$(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@
 
 clean:
-	$(RM) $(RMFLAGS) $(OBJ) $(BONUS_OBJ)
-	$(RM) $(RMFLAGS) .make_mandatory .make_bonus
-
+	$(RM) -rf $(BUILD_DIR)
+	
 fclean: clean
 	$(RM) $(RMFLAGS) $(NAME)
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

@@ -12,7 +12,7 @@
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -I
+CFLAGS = -Wall -Wextra -Werror
 
 RM = rm
 
@@ -22,7 +22,7 @@ AR = ar
 
 ARFLAGS = rcs
 
-INCLUDE = include
+INCLUDE = -I include/
 
 NAME = push_swap
 
@@ -32,10 +32,6 @@ SRC = src/input_process.c \
 	src/stack_process1.c \
 	src/stack_process2.c \
 	src/sorting1.c \
-	printf/ft_print_int.c \
-	printf/ft_print_str.c \
-	printf/ft_print_unsigned.c \
-	printf/ft_printf.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -45,7 +41,7 @@ LIBFT_LIB = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)
 
-$(NAME): $(LIBFT_LIB) $(OBJ) $()
+$(NAME): $(LIBFT_LIB) $(OBJ)
 	$(CC) -L$(LIBFT_DIR) $(OBJ) -g -o $@ -lft
 
 $(LIBFT_LIB):
