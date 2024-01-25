@@ -11,8 +11,8 @@ int	*ft_rank(int *input_int, int size)
 	rank = (int *)malloc(size * sizeof(int));
 	while (i < size)
 	{
-		r = 0;
 		j = 0;
+		r = 1;
 		while (j < size)
 		{
 			if (j != i && input_int[j] < input_int[i])
