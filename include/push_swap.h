@@ -45,7 +45,6 @@ void	ft_swap(t_stack **stack);
 void	ft_push(t_stack **stack_from, t_stack **stack_to);
 void	ft_stack_print(t_stack **stack);
 int		*ft_rank(int *input_int, int size);
-void	solve_three(unsigned int identifier);
-unsigned int make_hash(int* rank);
+void	solve_three(int *rank);
 
 #endif
