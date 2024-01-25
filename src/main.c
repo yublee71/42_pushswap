@@ -16,7 +16,7 @@
 int	main(int argc, char *argv[])
 {
 	int 	*input_int;
-//	int 	*rank_int;
+	int 	*rank_int;
 	t_stack **stack_a;
 	t_stack *head_a;
 	t_stack **stack_b;
@@ -33,16 +33,17 @@ int	main(int argc, char *argv[])
 		//check duplicate
 		ft_input_duplicate_check(input_int, argc); //need to modify to argc - 1
 		//convert int array to rank array
-//		rank_int = ft_rank(input_int, argc - 1);
+		rank_int = ft_rank(input_int, argc - 1);
 		//convert array to double&circle list
 		stack_a = (t_stack **)malloc(sizeof(t_stack**));
-		head_a = ft_int_to_stack(input_int, argc - 1); //integrate rank too
+		head_a = ft_int_to_stack(input_int, rank_int, argc - 1); //integrate rank too
 		stack_a = &head_a;
 		stack_b = (t_stack **)malloc(sizeof(t_stack**));
 		head_b = NULL;
 		stack_b = &head_b;
 
-	//example1 with 2 1 3 6 5 8
+	/*example1 with 2 1 3 6 5 8
+	ft_stack_print(stack_a);
 	ft_swap(stack_a);
 	ft_push(stack_a, stack_b);
 	ft_push(stack_a, stack_b);
@@ -55,8 +56,8 @@ int	main(int argc, char *argv[])
 	ft_stack_print(stack_a);
 	ft_printf("stack b is below\n");
 	ft_stack_print(stack_b);
-
-	/*example2 with  3 2 1 0
+*/
+	//example2 with  3 2 1 0
 	ft_reverse_rotate(stack_a);
 	ft_push(stack_a, stack_b);
 	ft_swap(stack_a);
@@ -66,7 +67,6 @@ int	main(int argc, char *argv[])
 	ft_stack_print(stack_a);
 	ft_printf("stack b is below\n");
 	ft_stack_print(stack_b);
-	*/
 
 	//scan the number
 	//choose argorithm

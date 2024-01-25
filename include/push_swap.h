@@ -30,8 +30,8 @@ typedef struct s_stack
 
 int		*ft_input_convert_to_int(int argc, char *argv[]);
 void	ft_input_duplicate_check(int *input_int, int argc);
-t_stack	*ft_int_to_stack(int *input_int, int argc);
-t_stack	*ft_stacknew(int content);
+t_stack	*ft_int_to_stack(int *input_int, int* rank, int argc);
+t_stack	*ft_stacknew(int num, int rank);
 void	ft_rotate(t_stack **stack);
 void	ft_reverse_rotate(t_stack **stack);
 void	ft_swap(t_stack **stack);

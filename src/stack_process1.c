@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_process.c                                    :+:      :+:    :+:   */
+/*   stack_process1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 14:16:49 by yublee            #+#    #+#             */
-/*   Updated: 2024/01/16 14:17:10 by yublee           ###   ########.fr       */
+/*   Updated: 2024/01/25 17:52:46 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ void	ft_stack_print(t_stack **stack)
 	}
 }
 
-t_stack	*ft_stacknew(int content)
+t_stack	*ft_stacknew(int num, int rank)
 {
 	t_stack	*new_node;
 
 	new_node = (t_stack *)malloc(sizeof(t_stack));
 	if (!new_node)
 		return (NULL);
-	new_node->num = content;
-	new_node->rank = 0;
+	new_node->num = num;
+	new_node->rank = rank;
 	new_node->location = 0;
 	new_node->end = 0;
 	new_node->next = NULL;
@@ -49,7 +49,7 @@ t_stack	*ft_stacknew(int content)
 	return (new_node);
 }
 
-t_stack *ft_int_to_stack(int *input_int, int num_of_int)
+t_stack *ft_int_to_stack(int *input_int, int *rank, int num_of_int)
 {
 	t_stack	*first_node;
 //	t_stack	**head;
@@ -58,16 +58,18 @@ t_stack *ft_int_to_stack(int *input_int, int num_of_int)
 	int		i;
 
 	i = 0;
-	first_node = ft_stacknew(input_int[i++]);
+	first_node = ft_stacknew(input_int[i], rank[i]);
+	i++;
 	current = first_node;
 //	ft_printf("here: %d\n", (*head)->num);
 	while (i < num_of_int)
 	{
-		next = ft_stacknew(input_int[i++]);
+		next = ft_stacknew(input_int[i],rank[i]);
 		current->next = next;
 		next->prev = current;
 		next->location = i - 1;
 		current = next;
+		i++;
 	}
 //	ft_printf("here: %d\n", (*head)->num);
 	next->next = first_node;
