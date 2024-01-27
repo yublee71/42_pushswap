@@ -29,15 +29,15 @@ typedef struct s_stack
 	bool			end;
 }	t_stack;
 
-typedef struct s_three_numbers
+typedef struct s_id
 {
 	unsigned int	identifier;
 	char			*answer;
-} t_id;
+}	t_id;
 
 int		*ft_input_convert_to_int(int argc, char *argv[]);
 void	ft_input_duplicate_check(int *input_int, int argc);
-t_stack	*ft_int_to_stack(int *input_int, int* rank, int argc);
+t_stack	*ft_int_to_stack(int *input_int, int *rank, int argc);
 t_stack	*ft_stacknew(int num, int rank);
 void	ft_rotate(t_stack **stack);
 void	ft_reverse_rotate(t_stack **stack);
@@ -45,6 +45,7 @@ void	ft_swap(t_stack **stack);
 void	ft_push(t_stack **stack_from, t_stack **stack_to);
 void	ft_stack_print(t_stack **stack);
 int		*ft_rank(int *input_int, int size);
-void	solve_three(int *rank);
+bool	solve_three(int *rank);
+void	solve_four(int *rank);
 
 #endif

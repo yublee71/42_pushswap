@@ -36,6 +36,8 @@ int	main(int argc, char *argv[])
 		rank_int = ft_rank(input_int, argc - 1);
 		if (argc == 4)
 			solve_three(rank_int);
+		if (argc == 5)
+			solve_four(rank_int);
 		//convert array to double&circle list
 		//stack_a = (t_stack **)malloc(sizeof(t_stack**));
 		//head_a = ft_int_to_stack(input_int, rank_int, argc - 1); //integrate rank too
