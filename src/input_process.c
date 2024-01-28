@@ -38,20 +38,21 @@ void	ft_input_duplicate_check(int *input_int, int argc)
 
 int	*ft_input_convert_to_int(int argc, char *argv[])
 {
-	int	i; //size_t?
-	int	j; //size_t?
+	int	i;
+	int	j;
 	int	error_flag;
 	int	*input_int;
 
-	i = 1;	
+	i = 1;
 	input_int = (int *)malloc((argc - 1) * sizeof(int));
 	while (i < argc)
 	{
-		j = 0;	
-		error_flag = 0;	
+		j = 0;
+		error_flag = 0;
 		if (argv[i][j] == '0' && argv[i][j + 1])
 			error_flag = 1;
-		if (argv[i][j] == '-' && ft_isdigit(argv[i][j + 1]) && argv[i][j + 1] != '0')
+		if (argv[i][j] == '-' && ft_isdigit(argv[i][j + 1]) 
+			&& argv[i][j + 1] != '0')
 			j++;
 		while (argv[i][j])
 		{
@@ -66,7 +67,5 @@ int	*ft_input_convert_to_int(int argc, char *argv[])
 		input_int[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
-//	printf("done well? :%d\n", input_int[0]);
-//	printf("done well? :%d\n", input_int[1]);
 	return (input_int);
 }

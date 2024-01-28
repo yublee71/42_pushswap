@@ -17,10 +17,10 @@ int	main(int argc, char *argv[])
 {
 	int 	*input_int;
 	int 	*rank_int;
-	//t_stack **stack_a;
-	//t_stack *head_a;
-	//t_stack **stack_b;
-	//t_stack *head_b;
+	t_stack **stack_a;
+	t_stack *head_a;
+	t_stack **stack_b;
+	t_stack *head_b;
 
 	//if no input, give back prompt
 	if (argc == 1)
@@ -31,20 +31,20 @@ int	main(int argc, char *argv[])
 		//convert to int array && check digit
 		input_int = ft_input_convert_to_int(argc, argv);
 		//check duplicate
-		ft_input_duplicate_check(input_int, argc); //need to modify to argc - 1
+		ft_input_duplicate_check(input_int, argc);
 		//convert int array to rank array
 		rank_int = ft_rank(input_int, argc - 1);
-		if (argc == 4)
-			solve_three(rank_int);
-		if (argc == 5)
-			solve_four(rank_int);
 		//convert array to double&circle list
-		//stack_a = (t_stack **)malloc(sizeof(t_stack**));
-		//head_a = ft_int_to_stack(input_int, rank_int, argc - 1); //integrate rank too
-		//stack_a = &head_a;
-		//stack_b = (t_stack **)malloc(sizeof(t_stack**));
-		//head_b = NULL;
-		//stack_b = &head_b;
+		stack_a = (t_stack **)malloc(sizeof(t_stack**));
+		head_a = ft_int_to_stack(input_int, rank_int, argc - 1);
+		stack_a = &head_a;
+		stack_b = (t_stack **)malloc(sizeof(t_stack**));
+		head_b = NULL;
+		stack_b = &head_b;
+		if (argc == 4)
+			solve_three(stack_a);
+		if (argc == 5)
+			solve_four(stack_a, stack_b);
 
 	/*example1 with 2 1 3 6 5 8
 	ft_stack_print(stack_a);

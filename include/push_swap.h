@@ -37,15 +37,33 @@ typedef struct s_id
 
 int		*ft_input_convert_to_int(int argc, char *argv[]);
 void	ft_input_duplicate_check(int *input_int, int argc);
+
 t_stack	*ft_int_to_stack(int *input_int, int *rank, int argc);
 t_stack	*ft_stacknew(int num, int rank);
-void	ft_rotate(t_stack **stack);
-void	ft_reverse_rotate(t_stack **stack);
-void	ft_swap(t_stack **stack);
-void	ft_push(t_stack **stack_from, t_stack **stack_to);
+bool	is_stack_sorted(t_stack **stack);
 void	ft_stack_print(t_stack **stack);
+
+bool	ft_rotate(t_stack **stack);
+void	rotate_a(t_stack **stack_a);
+void	rotate_b(t_stack **stack_b);
+void	rotate_ab(t_stack **stack_a, t_stack **stack_b);
+
+bool	ft_reverse_rotate(t_stack **stack);
+void	reverse_rotate_a(t_stack **stack_a);
+void	reverse_rotate_b(t_stack **stack_b);
+void	reverse_rotate_ab(t_stack **stack_a, t_stack **stack_b);
+
+bool	ft_swap(t_stack **stack);
+void	swap_a(t_stack **stack_a);
+void	swap_b(t_stack **stack_b);
+void	swap_ab(t_stack **stack_a, t_stack **stack_b);
+
+bool	ft_push(t_stack **stack_from, t_stack **stack_to);
+void	push_a(t_stack **stack_a, t_stack **stack_b);
+void	push_b(t_stack **stack_a, t_stack **stack_b);
+
 int		*ft_rank(int *input_int, int size);
-bool	solve_three(int *rank);
-void	solve_four(int *rank);
+void	solve_three(t_stack **stack_a);
+void	solve_four(t_stack **stack_a, t_stack **stack_b);
 
 #endif

@@ -13,6 +13,20 @@
 #include "push_swap.h"
 #include <stdio.h>
 
+bool	is_stack_sorted(t_stack **stack)
+{
+	t_stack	*temp;
+
+	temp = *stack;
+	while (!temp->end)
+	{
+		if (temp->rank > (temp->next)->rank)
+			return (0);
+		temp = temp->next;
+	}
+	return (1);
+}
+
 void	ft_stack_print(t_stack **stack)
 {
 	t_stack	*temp;
@@ -20,15 +34,15 @@ void	ft_stack_print(t_stack **stack)
 	temp = *stack;
 	if (!temp)
 		ft_printf("empty\n");
-	while (1 && temp)
+	while (temp)
 	{
-		ft_printf("number is: %d\n",temp->num);
-		ft_printf("rank is: %d\n",temp->rank);
-		ft_printf("location is: %d\n",temp->location);
-		ft_printf("is it last node? : %d\n",temp->end);
+		ft_printf("number is: %d\n", temp->num);
+		ft_printf("rank is: %d\n", temp->rank);
+		ft_printf("location is: %d\n", temp->location);
+		ft_printf("is it last node? : %d\n", temp->end);
 		ft_printf("---------------\n");
 		if (temp->end)
-			break;
+			break ;
 		temp = temp->next;
 	}
 }
@@ -49,10 +63,9 @@ t_stack	*ft_stacknew(int num, int rank)
 	return (new_node);
 }
 
-t_stack *ft_int_to_stack(int *input_int, int *rank, int num_of_int)
+t_stack	*ft_int_to_stack(int *input_int, int *rank, int num_of_int)
 {
 	t_stack	*first_node;
-//	t_stack	**head;
 	t_stack	*current;
 	t_stack	*next;
 	int		i;
@@ -61,17 +74,15 @@ t_stack *ft_int_to_stack(int *input_int, int *rank, int num_of_int)
 	first_node = ft_stacknew(input_int[i], rank[i]);
 	i++;
 	current = first_node;
-//	ft_printf("here: %d\n", (*head)->num);
 	while (i < num_of_int)
 	{
-		next = ft_stacknew(input_int[i],rank[i]);
+		next = ft_stacknew(input_int[i], rank[i]);
 		current->next = next;
 		next->prev = current;
 		next->location = i - 1;
 		current = next;
 		i++;
 	}
-//	ft_printf("here: %d\n", (*head)->num);
 	next->next = first_node;
 	next->end = 1;
 	(first_node)->prev = next;

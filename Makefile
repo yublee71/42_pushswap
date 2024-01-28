@@ -29,10 +29,13 @@ NAME = push_swap
 #needs editing later
 SRC = src/input_process.c \
 	src/main.c \
-	src/stack_process1.c \
-	src/stack_process2.c \
-	src/sorting1.c \
-	src/three_numbers.c \
+	src/action/rotate.c \
+	src/action/reverse_rotate.c \
+	src/action/swap.c \
+	src/action/push.c \
+	src/stack_process.c \
+	src/sorting.c \
+	src/small_numbers.c \
 
 OBJ = $(SRC:.c=.o)
 

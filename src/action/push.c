@@ -13,14 +13,26 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-void	ft_push(t_stack **stack_from, t_stack **stack_to)
+void	push_a(t_stack **stack_a, t_stack **stack_b)
+{
+	if (ft_push(stack_b, stack_a))
+		ft_printf("pa\n");
+}
+
+void	push_b(t_stack **stack_a, t_stack **stack_b)
+{
+	if (ft_push(stack_a, stack_b))
+		ft_printf("pb\n");
+}
+
+bool	ft_push(t_stack **stack_from, t_stack **stack_to)
 {
 	t_stack *temp;
 	t_stack *temp2;
 	t_stack *loc_temp;
 
 	if (*stack_from == NULL)
-		return ;
+		return (0);
 	temp = *stack_from;
 	if (!temp->end)
 	{
@@ -63,71 +75,6 @@ void	ft_push(t_stack **stack_from, t_stack **stack_to)
 		temp->prev = temp;
 		temp->end = 1;
 	}
-	ft_printf("<<p>>\n");
+	return (1);
 }
 
-void	ft_rotate(t_stack **stack)
-{
-	t_stack	*temp;
-
-	temp = *stack;
-	temp->location = (temp->prev)->location;
-	temp = temp->next;
-	while (!temp->end)
-	{
-		temp->location -= 1;
-		temp = temp->next;
-	}
-	temp->location -= 1;
-	temp->end = 0;
-	(*stack)->end = 1;
-	*stack = (*stack)->next;
-	ft_printf("<<r>>\n");
-}
-
-void	ft_reverse_rotate(t_stack **stack)
-{
-	t_stack	*temp;
-
-	temp = *stack;
-	while (!temp->end)
-	{
-		temp->location++;
-		temp = temp->next;
-	}
-	(temp->prev)->end = 1;
-	(temp)->location = 0;
-	(temp)->end = 0;
-	*stack=(*stack)->prev;
-	ft_printf("<<rr>>\n");
-}
-
-void	ft_swap(t_stack **stack)
-{
-	t_stack	*first;
-	t_stack	*second;
-	t_stack	*third;
-	t_stack	*last;
-	t_stack	*temp;
-
-	temp = *stack;
-	first = *stack;
-	second = (*stack)->next;
-	third = ((*stack)->next)->next;
-	last = (*stack)->prev;
-	last->next = second;
-	second->next = first;
-	first->next = third;
-	third->prev = first;
-	first->prev = second;
-	second->prev = last;
-	second->location = 0;
-	first->location = 1;
-	if (second->end)
-	{
-		second->end = 0;
-		first->end = 1;
-	}
-	*stack = temp->prev;
-	ft_printf("<<s>>\n");
-}
