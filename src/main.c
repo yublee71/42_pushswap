@@ -38,13 +38,12 @@ int	main(int argc, char *argv[])
 		stack_a = (t_stack **)malloc(sizeof(t_stack**));
 		head_a = ft_int_to_stack(input_int, rank_int, argc - 1);
 		stack_a = &head_a;
+		//ft_stack_print(stack_a);
 		stack_b = (t_stack **)malloc(sizeof(t_stack**));
 		head_b = NULL;
 		stack_b = &head_b;
-		if (argc == 4)
-			solve_three(stack_a);
-		if (argc == 5)
-			solve_four(stack_a, stack_b);
+		if (argc < 8 && argc > 3)
+			solve_til_six(stack_a, stack_b);
 
 	/*example1 with 2 1 3 6 5 8
 	ft_stack_print(stack_a);

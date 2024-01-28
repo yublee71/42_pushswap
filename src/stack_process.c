@@ -56,7 +56,7 @@ t_stack	*ft_stacknew(int num, int rank)
 		return (NULL);
 	new_node->num = num;
 	new_node->rank = rank;
-	new_node->location = 0;
+	new_node->location = 1;
 	new_node->end = 0;
 	new_node->next = NULL;
 	new_node->prev = NULL;
@@ -79,7 +79,7 @@ t_stack	*ft_int_to_stack(int *input_int, int *rank, int num_of_int)
 		next = ft_stacknew(input_int[i], rank[i]);
 		current->next = next;
 		next->prev = current;
-		next->location = i - 1;
+		next->location = i + 1;
 		current = next;
 		i++;
 	}

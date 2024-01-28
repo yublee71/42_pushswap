@@ -64,6 +64,6 @@ void	push_b(t_stack **stack_a, t_stack **stack_b);
 
 int		*ft_rank(int *input_int, int size);
 void	solve_three(t_stack **stack_a);
-void	solve_four(t_stack **stack_a, t_stack **stack_b);
+void	solve_til_six(t_stack **stack_a, t_stack **stack_b);
 
 #endif
