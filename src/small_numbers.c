@@ -65,18 +65,26 @@ void	solve_til_six(t_stack **stack_a, t_stack **stack_b)
 
 	if (is_stack_sorted(stack_a))
 		return ;
+	// ft_stack_print(stack_a);
 	while (((*stack_a)->prev)->location > 3)
+	{
 		push_b(stack_a, stack_b);
+		ft_stack_print(stack_a);
+	}
 	solve_three(stack_a);
 	while (*stack_b)
 	{
 		if (is_stack_sorted(stack_b))
 			swap_b(stack_b);
 		i = 1;
+		ft_stack_print(stack_a);
+		ft_stack_print(stack_b);
 		while ((*stack_b)->rank != 1 &&
-			(*stack_b)->rank - ((*stack_a)->prev)->rank != 1)
+			(*stack_b)->rank - ((*stack_a)->prev)->rank != 1 && i < 4)
 		{
 			reverse_rotate_a(stack_a);
+			// ft_stack_print(stack_a);
+			// ft_stack_print(stack_b);
 			i++;
 		}
 		push_a(stack_a, stack_b);

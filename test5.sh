@@ -116,6 +116,7 @@ ARG=("1 2 3 4 5"
 "5 3 4 2 1"
 "5 4 1 2 3"
 "5 4 1 3 2")
+
 for str in "${ARG[@]}"; do
 	./push_swap $str | (wc -l)
 	./push_swap $str | ./checker_linux $str
