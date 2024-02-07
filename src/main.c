@@ -42,6 +42,7 @@ int	main(int argc, char *argv[])
 		stack_b = (t_stack **)malloc(sizeof(t_stack**));
 		head_b = NULL;
 		stack_b = &head_b;
+
 		if (argc < 8 && argc > 3)
 			solve_til_six(stack_a, stack_b);
 

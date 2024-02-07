@@ -31,7 +31,7 @@ bool	ft_reverse_rotate(t_stack **stack)
 		temp = temp->next;
 	}
 	(temp->prev)->end = 1;
-	(temp)->location = 0;
+	(temp)->location = 1;
 	(temp)->end = 0;
 	*stack=(*stack)->prev;
 	return (1);

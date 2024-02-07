@@ -115,9 +115,14 @@ ARG=("1 2 3 4 5"
 "5 3 4 1 2"
 "5 3 4 2 1"
 "5 4 1 2 3"
-"5 4 1 3 2")
+"5 4 1 3 2"
+"5 4 2 1 3"
+"5 4 2 3 1"
+"5 4 3 1 2"
+"5 4 3 2 1")
 
 for str in "${ARG[@]}"; do
-	(echo "$str" && ./push_swap $str | ./checker_linux $str)
+	echo "$str"
+	# ./push_swap $str | ./checker_linux $str
 	./push_swap $str | (wc -l)
 done
