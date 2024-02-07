@@ -87,8 +87,7 @@ void	solve_til_six(t_stack **stack_a, t_stack **stack_b)
 			// ft_stack_print(stack_a);
 			// ft_stack_print(stack_b);
 			while (((*stack_b)->rank < ((*stack_a)->prev)->rank ||
-				(*stack_b)->rank > (*stack_a)->rank)
-				&& i < 3)
+				(*stack_b)->rank > (*stack_a)->rank))
 			{
 			// ft_stack_print(stack_a);
 			// ft_printf("\n");
