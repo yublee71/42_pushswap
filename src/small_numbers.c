@@ -65,12 +65,8 @@ void	solve_til_six(t_stack **stack_a, t_stack **stack_b)
 
 	if (is_stack_sorted(stack_a))
 		return ;
-	// ft_stack_print(stack_a);
 	while (((*stack_a)->prev)->location > 3)
-	{
 		push_b(stack_a, stack_b);
-		// ft_stack_print(stack_a);
-	}
 	solve_three(stack_a);
 	while (*stack_b)
 	{
@@ -84,19 +80,10 @@ void	solve_til_six(t_stack **stack_a, t_stack **stack_b)
 		else
 		{
 			i = 0;
-			// ft_stack_print(stack_a);
-			// ft_stack_print(stack_b);
 			while (((*stack_b)->rank < ((*stack_a)->prev)->rank ||
 				(*stack_b)->rank > (*stack_a)->rank))
 			{
-			// ft_stack_print(stack_a);
-			// ft_printf("\n");
-			// ft_stack_print(stack_b);
-			// ft_printf("\n");
 				rotate_a(stack_a);
-			// ft_printf("\n");
-			// ft_printf("\n");
-			// ft_printf("\n");
 				i++;
 			}
 			push_a(stack_a, stack_b);
