@@ -118,6 +118,6 @@ ARG=("1 2 3 4 5"
 "5 4 1 3 2")
 
 for str in "${ARG[@]}"; do
+	(echo "$str" && ./push_swap $str | ./checker_linux $str)
 	./push_swap $str | (wc -l)
-	./push_swap $str | ./checker_linux $str
 done
