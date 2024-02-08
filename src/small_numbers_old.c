@@ -61,7 +61,7 @@ void	solve_three_b(t_stack **stack_b)
 
 void	solve_til_six(t_stack **stack_a, t_stack **stack_b)
 {
-	// int	i;
+	int	i;
 
 	if (is_stack_sorted(stack_a))
 		return ;
@@ -70,17 +70,28 @@ void	solve_til_six(t_stack **stack_a, t_stack **stack_b)
 	solve_three(stack_a);
 	while (*stack_b)
 	{
-		push_a(stack_a, stack_b);
-		if ((*stack_a)->rank > ((*stack_a)->prev)->rank)
-			reverse_rotate_a(stack_a);
-		while ((*stack_a)->rank > ((*stack_a)->next)->rank)
+		if ((*stack_b)->rank < (*stack_a)->rank)
+			push_a(stack_a, stack_b);
+		else if ((*stack_b)->rank > ((*stack_a)->prev)->rank)
 		{
-			swap_a(stack_a);
-			if (!is_stack_sorted(stack_a))
-				rotate_a(stack_a);
-		}
-		while (!is_stack_sorted(stack_a))
+			push_a(stack_a, stack_b);
 			rotate_a(stack_a);
+		}
+		else
+		{
+			i = 0;
+			while (((*stack_b)->rank < ((*stack_a)->prev)->rank ||
+				(*stack_b)->rank > (*stack_a)->rank))
+			{
+				rotate_a(stack_a);
+				i++;
+			}
+			push_a(stack_a, stack_b);
+			if ((*stack_a)->rank == 1 && !*stack_b)
+				return ; 
+			while (i--)
+				reverse_rotate_a(stack_a);
+		}
 	}
 }
 

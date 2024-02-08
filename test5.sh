@@ -123,6 +123,6 @@ ARG=("1 2 3 4 5"
 
 for str in "${ARG[@]}"; do
 	echo "$str"
-	# ./push_swap $str | ./checker_linux $str
+	./push_swap $str | ./checker_linux $str
 	./push_swap $str | (wc -l)
 done
