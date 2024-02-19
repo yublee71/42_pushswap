@@ -1,16 +1,16 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile copy                                      :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: yublee <yublee@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 14:44:19 by yublee            #+#    #+#              #
-#    Updated: 2024/01/24 18:46:30 by yublee           ###   ########.fr        #
+#    Updated: 2024/02/19 14:18:11 by yublee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-DIRS			:= printf std bonus
+DIRS := printf std bonus
 
 CC = cc
 
@@ -33,10 +33,10 @@ BONUS_SRC :=
 
 include $(addsuffix /Makefile.mk,$(DIRS))
 
-BUILD_DIR		= build
-
 OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)
 BOBJ = $(BONUS_SRC:%.c=$(BUILD_DIR)/%.o)
+
+BUILD_DIR = build
 
 all: $(NAME)
 
@@ -44,9 +44,9 @@ $(NAME): $(BUILD_DIR) $(OBJ) $(BOBJ)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJ) $(BOBJ)
 
 $(BUILD_DIR):
-		mkdir -pv $(BUILD_DIR) $(patsubst %,$(BUILD_DIR)/%,$(DIRS))
+	mkdir -pv $(BUILD_DIR) $(patsubst %,$(BUILD_DIR)/%,$(DIRS))
 
-$(BUILD_DIR)/%.o:	%.c
+$(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@
 
 clean:

@@ -6,9 +6,11 @@
 #    By: yublee <yublee@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 15:30:54 by yublee            #+#    #+#              #
-#    Updated: 2024/01/11 19:10:59 by yublee           ###   ########.fr        #
+#    Updated: 2024/02/19 14:52:21 by yublee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+DIRS := src/action
 
 CC = cc
 
@@ -37,25 +39,29 @@ SRC = src/input_process.c \
 	src/sorting.c \
 	src/small_numbers.c \
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)
 
 LIBFT_DIR = ./libft
-
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
+
+BUILD_DIR = build
 
 all: $(NAME)
 
-$(NAME): $(LIBFT_LIB) $(OBJ)
+$(NAME): $(LIBFT_LIB) $(BUILD_DIR) $(OBJ)
 	$(CC) -L$(LIBFT_DIR) $(OBJ) -g -o $@ -lft
 
 $(LIBFT_LIB):
 	make -C $(LIBFT_DIR)
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $(INCLUDE) $< -g -o $@
+$(BUILD_DIR):
+	mkdir -pv $(BUILD_DIR) $(patsubst %,$(BUILD_DIR)/%,$(DIRS))
+
+$(BUILD_DIR)/%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@
 
 clean:
-	$(RM) $(RMFLAGS) $(OBJ)
+	$(RM) -rf $(BUILD_DIR)
 	make -C $(LIBFT_DIR) clean
 
 fclean: clean
