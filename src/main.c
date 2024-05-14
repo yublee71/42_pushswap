@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:32:49 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 22:53:50 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 23:37:05 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ int	main(int argc, char *argv[])
 	if (argc > 2)
 	{
 		//convert to int array && check digit
-		input_int = ft_input_convert_to_int(argc, argv);
+		input_int = (int *)malloc((argc - 1) * sizeof(int));
+		if (!input_int)
+			exit_with_error("malloc", 1);
+		ft_input_convert_to_int(argc, argv, input_int);
 		//check duplicate
 		ft_input_duplicate_check(input_int, argc);
 		//convert int array to rank array

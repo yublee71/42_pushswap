@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting.c                                          :+:      :+:    :+:   */
+/*   rank.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:24:46 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 17:24:46 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 23:36:15 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	*ft_rank(int *input_int, int size)
 
 	i = 0;
 	rank = (int *)malloc(size * sizeof(int));
+	if (!rank)
+		exit_with_error("malloc\n", 1); //needs to free input as well?
 	while (i < size)
 	{
 		j = 0;

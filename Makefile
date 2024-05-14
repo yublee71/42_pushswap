@@ -6,7 +6,7 @@
 #    By: yublee <yublee@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 15:30:54 by yublee            #+#    #+#              #
-#    Updated: 2024/05/14 22:42:34 by yublee           ###   ########.fr        #
+#    Updated: 2024/05/14 23:24:05 by yublee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,9 @@ SRC = src/input_process.c \
 	src/action/swap.c \
 	src/action/push.c \
 	src/stack_process.c \
-	src/sorting.c \
+	src/rank.c \
 	src/small_numbers.c \
+	src/utils.c \
 
 OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)
 

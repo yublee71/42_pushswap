@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:07:39 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 17:53:10 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 23:38:56 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	reverse_rotate_b(t_stack **stack_b)
 
 void	reverse_rotate_ab(t_stack **stack_a, t_stack **stack_b)
 {
-	if (*stack_a && *stack_b && ft_reverse_rotate(stack_a) && ft_reverse_rotate(stack_b))
+	if (*stack_a && *stack_b
+		&& ft_reverse_rotate(stack_a) && ft_reverse_rotate(stack_b))
 		ft_printf("rrr\n");
 }

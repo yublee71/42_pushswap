@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:02:08 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 22:40:19 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 23:22:07 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_id
 	char			*answer;
 }	t_id;
 
-int		*ft_input_convert_to_int(int argc, char *argv[]);
+void	ft_input_convert_to_int(int argc, char *argv[], int *input_int);
 void	ft_input_duplicate_check(int *input_int, int argc);
 
 t_stack	*ft_int_to_stack(int *input_int, int *rank, int argc);
@@ -63,5 +63,7 @@ int		*ft_rank(int *input_int, int size);
 void	solve_three_a(t_stack **stack_a);
 void	solve_three_b(t_stack **stack_a);
 void	solve_til_six(t_stack **stack_a, t_stack **stack_b);
+
+void	exit_with_error(const char *str, int exit_no);
 
 #endif
