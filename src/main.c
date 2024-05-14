@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:32:49 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 18:04:27 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 22:07:19 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int argc, char *argv[])
 		// ft_printf("===============\n");
 		// ft_stack_print(stack_a);
 		// ft_printf("===============\n");
-		if (argc < 7 && argc > 3)
+		if (argc < 8 && argc > 3)
 			solve_til_five(stack_a, stack_b);
 
 	/*example1 with 2 1 3 6 5 8

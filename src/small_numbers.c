@@ -6,13 +6,22 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:24:09 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 21:47:57 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 22:13:25 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	solve_three(t_stack **stack_a)
+static void	move_consecutive(t_stack **stack_a, t_stack **stack_b)
+{
+	while ((*stack_b) && (*stack_b)->rank - (*stack_a)-> rank == 1)
+	{
+		rotate_a(stack_a);
+		push_a(stack_a, stack_b);
+	}
+}
+
+void	solve_three_stack_a(t_stack **stack_a)
 {
 	int		rank1;
 	int		rank2;
@@ -41,6 +50,35 @@ void	solve_three(t_stack **stack_a)
 	}
 }
 
+void	solve_three_stack_b(t_stack **stack_b)
+{
+	int		rank1;
+	int		rank2;
+	int		rank3;
+
+	if (((*stack_b)->prev)->location != 3)
+		return ;
+	rank1 = (*stack_b)->rank;
+	rank2 = ((*stack_b)->next)->rank;
+	rank3 = ((*stack_b)->prev)->rank;
+	if (rank1 < rank3 && rank3 < rank2)
+	{
+		swap_b(stack_b);
+		rotate_b(stack_b);
+	}
+	if (rank2 < rank1 && rank1 < rank3)
+		swap_b(stack_b);
+	if (rank3 < rank1 && rank1 < rank2)
+		reverse_rotate_b(stack_b);
+	if (rank2 < rank3 && rank3 < rank1)
+		rotate_b(stack_b);
+	if (rank3 < rank2 && rank2 < rank1)
+	{
+		swap_b(stack_b);
+		reverse_rotate_b(stack_b);
+	}
+}
+
 void	solve_til_five(t_stack **stack_a, t_stack **stack_b)
 {
 	if (is_stack_sorted(stack_a))
@@ -49,24 +87,21 @@ void	solve_til_five(t_stack **stack_a, t_stack **stack_b)
 		push_b(stack_a, stack_b);
 	solve_three(stack_a);
 	if (!is_stack_sorted(stack_b))
-		swap_b(stack_b);
+	{
+		if ((*stack_b)->prev->location == 2)
+			swap_b(stack_b);
+		else
+			solve_three2(stack_b);
+	}
 	if ((*stack_b) && (*stack_b)->rank == 1)
 		push_a(stack_a, stack_b);
-	if ((*stack_b) && (*stack_b)->rank == 2)
-	{
-		rotate_a(stack_a);
-		push_a(stack_a, stack_b);
-		if ((*stack_b) && (*stack_b)->rank == 3)
-		{
-			rotate_a(stack_a);
-			push_a(stack_a, stack_b);
-		}
-	}
+	move_consecutive(stack_a, stack_b);
 	while (*stack_b)
 	{
 		while ((*stack_b)->rank - ((*stack_a)->prev)->rank != 1)
 			reverse_rotate_a(stack_a);
 		push_a(stack_a, stack_b);
+		move_consecutive(stack_a, stack_b);
 	}
 	while ((*stack_a)->rank != 1)
 		rotate_a(stack_a);
