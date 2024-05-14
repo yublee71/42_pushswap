@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:24:09 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 18:32:47 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 18:37:23 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ void	solve_three(t_stack **stack_a)
 
 void	solve_til_five(t_stack **stack_a, t_stack **stack_b)
 {
-	int	i;
-
 	if (is_stack_sorted(stack_a))
 		return ;
 	while (((*stack_a)->prev)->location > 3)
@@ -58,18 +56,18 @@ void	solve_til_five(t_stack **stack_a, t_stack **stack_b)
 	{
 		rotate_a(stack_a);
 		push_a(stack_a, stack_b);
-		reverse_rotate_a(stack_a);
 	}
+	// if ((*stack_b)->rank == 3)
+	// {
+	// 	rotate_a(stack_a);
+	// 	push_a(stack_a, stack_b);
+	// }
 	while (*stack_b)
 	{
-		i = 1;
 		while ((*stack_b)->rank - ((*stack_a)->prev)->rank != 1)
-		{
 			reverse_rotate_a(stack_a);
-			i++;
-		}
 		push_a(stack_a, stack_b);
-		while (i--)
-			rotate_a(stack_a);
 	}
+	while ((*stack_a)->rank != 1)
+		rotate_a(stack_a);
 }
