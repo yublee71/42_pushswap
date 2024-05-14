@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:24:09 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 18:37:23 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 21:47:57 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,18 @@ void	solve_til_five(t_stack **stack_a, t_stack **stack_b)
 	solve_three(stack_a);
 	if (!is_stack_sorted(stack_b))
 		swap_b(stack_b);
-	if ((*stack_b)->rank == 1)
+	if ((*stack_b) && (*stack_b)->rank == 1)
 		push_a(stack_a, stack_b);
-	if ((*stack_b)->rank == 2)
+	if ((*stack_b) && (*stack_b)->rank == 2)
 	{
 		rotate_a(stack_a);
 		push_a(stack_a, stack_b);
+		if ((*stack_b) && (*stack_b)->rank == 3)
+		{
+			rotate_a(stack_a);
+			push_a(stack_a, stack_b);
+		}
 	}
-	// if ((*stack_b)->rank == 3)
-	// {
-	// 	rotate_a(stack_a);
-	// 	push_a(stack_a, stack_b);
-	// }
 	while (*stack_b)
 	{
 		while ((*stack_b)->rank - ((*stack_a)->prev)->rank != 1)
