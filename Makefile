@@ -6,7 +6,7 @@
 #    By: yublee <yublee@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 15:30:54 by yublee            #+#    #+#              #
-#    Updated: 2024/02/19 14:52:21 by yublee           ###   ########.fr        #
+#    Updated: 2024/05/14 22:42:34 by yublee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ DIRS := src/action
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 RM = rm
 

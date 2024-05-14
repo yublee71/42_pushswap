@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_process1.c                                   :+:      :+:    :+:   */
+/*   stack_process.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 14:16:49 by yublee            #+#    #+#             */
-/*   Updated: 2024/01/25 17:52:46 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 22:52:41 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,24 @@ t_stack	*ft_int_to_stack(int *input_int, int *rank, int num_of_int)
 	next->next = first_node;
 	next->end = 1;
 	(first_node)->prev = next;
+	free(input_int);
+	free(rank);
 	return (first_node);
+}
+
+void	free_stack(t_stack **stack)
+{
+	t_stack	*current;
+	t_stack	*next;
+
+	if (!stack)
+		return ;
+	current = *stack;
+	while (current && !current->end)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	free(current);
 }

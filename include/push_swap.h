@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:02:08 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 22:32:13 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 22:40:19 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_stack	*ft_int_to_stack(int *input_int, int *rank, int argc);
 t_stack	*ft_stacknew(int num, int rank);
 bool	is_stack_sorted(t_stack **stack);
 void	ft_stack_print(t_stack **stack);
+void	free_stack(t_stack **stack);
 
 void	rotate_a(t_stack **stack_a);
 void	rotate_b(t_stack **stack_b);

@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:32:49 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 22:35:42 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 22:53:50 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ int	main(int argc, char *argv[])
 		//convert int array to rank array
 		rank_int = ft_rank(input_int, argc - 1);
 		//convert array to double&circle list
-		stack_a = (t_stack **)malloc(sizeof(t_stack**));
 		head_a = ft_int_to_stack(input_int, rank_int, argc - 1);
 		stack_a = &head_a;
-		stack_b = (t_stack **)malloc(sizeof(t_stack**));
 		head_b = NULL;
 		stack_b = &head_b;
 		// ft_stack_print(stack_a);
@@ -59,36 +57,8 @@ int	main(int argc, char *argv[])
 		// ft_printf("===============\n");
 		if (argc < 8 && argc > 3)
 			solve_til_six(stack_a, stack_b);
-		
-		// free_stack(stack_a);
-		// free_stack(stack_a);
-
-	/*example1 with 2 1 3 6 5 8
-	ft_stack_print(stack_a);
-	ft_swap(stack_a);
-	ft_push(stack_a, stack_b);
-	ft_push(stack_a, stack_b);
-	ft_push(stack_a, stack_b);
-	ft_swap(stack_a);
-	ft_push(stack_b, stack_a);
-	ft_push(stack_b, stack_a);
-	ft_push(stack_b, stack_a);
-	ft_printf("stack a is below\n");
-	ft_stack_print(stack_a);
-	ft_printf("stack b is below\n");
-	ft_stack_print(stack_b);
-*/
-	/*example2 with  3 2 1 0
-	ft_reverse_rotate(stack_a);
-	ft_push(stack_a, stack_b);
-	ft_swap(stack_a);
-	ft_reverse_rotate(stack_a);
-	ft_push(stack_b, stack_a);
-	ft_printf("stack a is below\n");
-	ft_stack_print(stack_a);
-	ft_printf("stack b is below\n");
-	ft_stack_print(stack_b);
-	*/
+		free_stack(stack_a);
+		free_stack(stack_b);
 
 	//scan the number
 	//choose argorithm
