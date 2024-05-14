@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   small_numbers.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/14 17:24:09 by yublee            #+#    #+#             */
+/*   Updated: 2024/05/14 18:18:14 by yublee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	solve_three(t_stack **stack_a)
@@ -28,60 +40,40 @@ void	solve_three(t_stack **stack_a)
 		reverse_rotate_a(stack_a);
 	}
 }
-/*
-void	solve_three_b(t_stack **stack_b)
-{
-	int		rank1;
-	int		rank2;
-	int		rank3;
 
-	if (((*stack_b)->prev)->location != 2)
-		return ;
-	rank1 = (*stack_b)->rank;
-	rank2 = ((*stack_b)->next)->rank;
-	rank3 = ((*stack_b)->prev)->rank;
-	if (rank1 < rank3 && rank3 < rank2)
-	{
-		swap_b(stack_b);
-		rotate_b(stack_b);
-	}
-	if (rank2 < rank1 && rank1 < rank3)
-		swap_b(stack_b);
-	if (rank3 < rank1 && rank1 < rank2)
-		reverse_rotate_b(stack_b);
-	if (rank2 < rank3 && rank3 < rank1)
-		rotate_b(stack_b);
-	if (rank3 < rank2 && rank2 < rank1)
-	{
-		swap_b(stack_b);
-		reverse_rotate_b(stack_b);
-	}
-}
-*/
-
-void	solve_til_six(t_stack **stack_a, t_stack **stack_b)
+void	solve_til_five(t_stack **stack_a, t_stack **stack_b)
 {
-	// int	i;
+	int	i;
 
 	if (is_stack_sorted(stack_a))
 		return ;
 	while (((*stack_a)->prev)->location > 3)
 		push_b(stack_a, stack_b);
 	solve_three(stack_a);
+	if (!is_stack_sorted(stack_b))
+		swap_b(stack_b);
+	if ((*stack_b)->rank == 1)
+		push_a(stack_a, stack_b);	
 	while (*stack_b)
 	{
-		push_a(stack_a, stack_b);
-		if ((*stack_a)->rank > ((*stack_a)->prev)->rank)
-			reverse_rotate_a(stack_a);
-		while ((*stack_a)->rank > ((*stack_a)->next)->rank)
+		i = 1;
+		while ((*stack_b)->rank - ((*stack_a)->prev)->rank != 1)
 		{
-			swap_a(stack_a);
-			if (!is_stack_sorted(stack_a))
-				rotate_a(stack_a);
+			reverse_rotate_a(stack_a);
+			i++;
 		}
-		while (!is_stack_sorted(stack_a))
+		push_a(stack_a, stack_b);
+		while (i--)
 			rotate_a(stack_a);
 	}
+	// if (*stack_b && is_stack_sorted(stack_b))
+	// 	swap_b(stack_b);
+	// while (*stack_b)
+	// {
+	// 	while ((*stack_a)->rank < (*stack_b)->rank)
+	// 		rotate_a(stack_a);
+	// 	push_a(stack_a, stack_b);
+	// }
 }
 
 /*

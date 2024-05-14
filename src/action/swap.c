@@ -1,24 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/14 17:07:49 by yublee            #+#    #+#             */
+/*   Updated: 2024/05/14 17:51:33 by yublee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	swap_a(t_stack **stack_a)
-{
-	if (ft_swap(stack_a))
-		ft_printf("sa\n");
-}
-
-void	swap_b(t_stack **stack_b)
-{
-	if (ft_swap(stack_b))
-		ft_printf("sb\n");
-}
-
-void	swap_ab(t_stack **stack_a, t_stack **stack_b)
-{
-	if (ft_swap(stack_a) && ft_swap(stack_b))
-		ft_printf("ss\n");
-}
-
-bool	ft_swap(t_stack **stack)
+static bool	ft_swap(t_stack **stack)
 {
 	int		value;
 	t_stack	*temp;
@@ -32,11 +26,27 @@ bool	ft_swap(t_stack **stack)
 	value = temp->rank;
 	temp->rank = (temp->next)->rank;
 	(temp->next)->rank = value;
-	value = temp->location;
-	temp->location = (temp->next)->location;
-	(temp->next)->location = value;
 	return (1);
 }
+
+void	swap_a(t_stack **stack_a)
+{
+	if (*stack_a && ft_swap(stack_a))
+		ft_printf("sa\n");
+}
+
+void	swap_b(t_stack **stack_b)
+{
+	if (*stack_b && ft_swap(stack_b))
+		ft_printf("sb\n");
+}
+
+void	swap_ab(t_stack **stack_a, t_stack **stack_b)
+{
+	if (*stack_a && *stack_b && ft_swap(stack_a) && ft_swap(stack_b))
+		ft_printf("ss\n");
+}
+
 /*
 void	ft_swap(t_stack **stack)
 {

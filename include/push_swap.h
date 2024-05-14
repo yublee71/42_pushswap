@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:02:08 by yublee            #+#    #+#             */
-/*   Updated: 2024/01/11 20:45:06 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 18:03:43 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,23 @@ t_stack	*ft_stacknew(int num, int rank);
 bool	is_stack_sorted(t_stack **stack);
 void	ft_stack_print(t_stack **stack);
 
-bool	ft_rotate(t_stack **stack);
 void	rotate_a(t_stack **stack_a);
 void	rotate_b(t_stack **stack_b);
 void	rotate_ab(t_stack **stack_a, t_stack **stack_b);
 
-bool	ft_reverse_rotate(t_stack **stack);
 void	reverse_rotate_a(t_stack **stack_a);
 void	reverse_rotate_b(t_stack **stack_b);
 void	reverse_rotate_ab(t_stack **stack_a, t_stack **stack_b);
 
-bool	ft_swap(t_stack **stack);
 void	swap_a(t_stack **stack_a);
 void	swap_b(t_stack **stack_b);
 void	swap_ab(t_stack **stack_a, t_stack **stack_b);
 
-bool	ft_push(t_stack **stack_from, t_stack **stack_to);
 void	push_a(t_stack **stack_a, t_stack **stack_b);
 void	push_b(t_stack **stack_a, t_stack **stack_b);
 
 int		*ft_rank(int *input_int, int size);
 void	solve_three(t_stack **stack_a);
-void	solve_til_six(t_stack **stack_a, t_stack **stack_b);
+void	solve_til_five(t_stack **stack_a, t_stack **stack_b);
 
 #endif

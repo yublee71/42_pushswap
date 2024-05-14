@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:12:26 by yublee            #+#    #+#             */
-/*   Updated: 2024/01/11 20:45:10 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 17:39:45 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_input_duplicate_check(int *input_int, int argc)
 			if (input_int[i] == input_int[j])
 			{
 				free(input_int);
-				ft_printf("error\n");
+				ft_printf("Error\n");
 				exit (1);
 			}
 			j++;
@@ -35,7 +35,7 @@ void	ft_input_duplicate_check(int *input_int, int argc)
 		i++;
 	}
 }
-
+// needs check for max int
 int	*ft_input_convert_to_int(int argc, char *argv[])
 {
 	int	i;
@@ -59,7 +59,7 @@ int	*ft_input_convert_to_int(int argc, char *argv[])
 			if (error_flag || !ft_isdigit(argv[i][j]))
 			{
 				free(input_int);
-				ft_printf("error\n");
+				ft_printf("Error\n");
 				exit (1);
 			}
 			j++;

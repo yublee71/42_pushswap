@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:32:49 by yublee            #+#    #+#             */
-/*   Updated: 2024/01/11 19:49:41 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 18:04:27 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,27 @@ int	main(int argc, char *argv[])
 		stack_a = (t_stack **)malloc(sizeof(t_stack**));
 		head_a = ft_int_to_stack(input_int, rank_int, argc - 1);
 		stack_a = &head_a;
-		//ft_stack_print(stack_a);
 		stack_b = (t_stack **)malloc(sizeof(t_stack**));
 		head_b = NULL;
 		stack_b = &head_b;
-
-		if (argc < 8 && argc > 3)
-			solve_til_six(stack_a, stack_b);
+		// ft_stack_print(stack_a);
+		// ft_printf("===============\n");
+		// reverse_rotate_a(stack_a);
+		// reverse_rotate_a(stack_a);
+		// reverse_rotate_a(stack_a);
+		// reverse_rotate_a(stack_a);
+		// swap_a(stack_a);
+		// swap_a(stack_a);
+		// ft_stack_print(stack_a);
+		// ft_printf("===============\n");
+		// push_b(stack_a, stack_b);
+		// push_a(stack_a, stack_b);
+		// ft_stack_print(stack_b);
+		// ft_printf("===============\n");
+		// ft_stack_print(stack_a);
+		// ft_printf("===============\n");
+		if (argc < 7 && argc > 3)
+			solve_til_five(stack_a, stack_b);
 
 	/*example1 with 2 1 3 6 5 8
 	ft_stack_print(stack_a);
