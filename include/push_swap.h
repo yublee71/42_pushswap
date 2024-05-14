@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:02:08 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 18:03:43 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 22:32:13 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	push_a(t_stack **stack_a, t_stack **stack_b);
 void	push_b(t_stack **stack_a, t_stack **stack_b);
 
 int		*ft_rank(int *input_int, int size);
-void	solve_three(t_stack **stack_a);
-void	solve_til_five(t_stack **stack_a, t_stack **stack_b);
+void	solve_three_a(t_stack **stack_a);
+void	solve_three_b(t_stack **stack_a);
+void	solve_til_six(t_stack **stack_a, t_stack **stack_b);
 
 #endif
