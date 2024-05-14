@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:24:09 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 18:18:14 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/14 18:32:47 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,13 @@ void	solve_til_five(t_stack **stack_a, t_stack **stack_b)
 	if (!is_stack_sorted(stack_b))
 		swap_b(stack_b);
 	if ((*stack_b)->rank == 1)
-		push_a(stack_a, stack_b);	
+		push_a(stack_a, stack_b);
+	if ((*stack_b)->rank == 2)
+	{
+		rotate_a(stack_a);
+		push_a(stack_a, stack_b);
+		reverse_rotate_a(stack_a);
+	}
 	while (*stack_b)
 	{
 		i = 1;
@@ -66,38 +72,4 @@ void	solve_til_five(t_stack **stack_a, t_stack **stack_b)
 		while (i--)
 			rotate_a(stack_a);
 	}
-	// if (*stack_b && is_stack_sorted(stack_b))
-	// 	swap_b(stack_b);
-	// while (*stack_b)
-	// {
-	// 	while ((*stack_a)->rank < (*stack_b)->rank)
-	// 		rotate_a(stack_a);
-	// 	push_a(stack_a, stack_b);
-	// }
 }
-
-/*
-void	solve_four(t_stack **stack_a, t_stack **stack_b)
-{
-	int	i;
-
-	if (is_stack_sorted(stack_a))
-		return ;
-	i = 1;
-	push_b(stack_a, stack_b);
-	solve_three(stack_a);
-	if ((*stack_b)->rank == 1)
-	{
-		push_a(stack_a, stack_b);
-		return ;
-	}
-	while ((*stack_b)->rank - ((*stack_a)->prev)->rank != 1)
-	{
-		reverse_rotate_a(stack_a);
-		i++;
-	}
-	push_a(stack_a, stack_b);
-	while (i--)
-		rotate_a(stack_a);
-}
-*/
