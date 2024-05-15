@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:02:08 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 23:46:50 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/15 18:50:02 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	push_a(t_stack **stack_a, t_stack **stack_b);
 void	push_b(t_stack **stack_a, t_stack **stack_b);
 
 int		*ft_rank(int *input_int, int size);
+void	move_consecutive(t_stack **stack_a, t_stack **stack_b);
 void	solve_three_a(t_stack **stack_a);
 void	solve_three_b(t_stack **stack_a);
 void	solve_til_six(t_stack **stack_a, t_stack **stack_b);

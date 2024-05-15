@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:32:49 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 23:43:51 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 00:14:46 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int	main(int argc, char *argv[])
 			solve_til_six(&head_a, &head_b);
 		else
 			solve_big_numbers(&head_a, &head_b);
+		ft_stack_print(&head_a);
+		ft_printf("=============\n");
+		ft_stack_print(&head_b);
 		free_stack(&head_a);
 		free_stack(&head_b);
 	}
