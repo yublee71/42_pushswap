@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 23:45:23 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/16 00:14:30 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 00:36:04 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ typedef struct s_info
 	int	min;
 	int	i;
 }	t_info;
+
+
 
 static t_info	find_minimum_move(int move[4])
 {
@@ -135,7 +137,7 @@ static void	action_execute(t_stack **stack_a, t_stack **stack_b, t_info info, in
 }
 
 //move = {r_a, rr_a, r_b, rr_b}
-static void	calculate_movements(t_stack **stack_a, t_stack **stack_b)
+static void	push_to_b(t_stack **stack_a, t_stack **stack_b)
 {
 	int		move[4] = {0};
 	int		min_move[4] = {0};
@@ -190,6 +192,41 @@ static void	calculate_movements(t_stack **stack_a, t_stack **stack_b)
 	action_execute(stack_a, stack_b, min_info, min_move);
 }
 
+static void	push_back_to_a(t_stack **stack_a, t_stack **stack_b)
+{
+	int		rb;
+	int		rrb;
+	t_stack	*current;
+	t_stack	*max_node;
+	int		b_size;
+	int		max;
+
+	max = INT_MIN;
+	current = (*stack_b);
+	b_size = (*stack_b)->prev->location;
+	while (1)
+	{
+		if (current->rank > max)
+		{
+			max = current->rank;
+			max_node = current;
+		}
+		if (current->end == 1)
+			break ;
+		current = current->next;
+	}
+	rb = (max_node)->location - 1;
+	rrb = b_size - (max_node)->location + 1;
+	if (rb < rrb)
+		while (rb--)
+			rotate_b(stack_b);
+	else
+		while (rrb--)
+			reverse_rotate_b(stack_b);
+	while (*stack_b)
+		push_a(stack_a, stack_b);
+}
+
 void	solve_big_numbers(t_stack **stack_a, t_stack **stack_b)
 {
 
@@ -197,7 +234,10 @@ void	solve_big_numbers(t_stack **stack_a, t_stack **stack_b)
 	push_b(stack_a, stack_b);
 	if (is_stack_sorted(stack_b))
 		swap_b(stack_b);
-	while ((*stack_a)->prev->location > 3)
-		calculate_movements(stack_a, stack_b);
-	solve_three_a(stack_a);
+	// while ((*stack_a)->prev->location > 3)
+	while ((*stack_a))
+		push_to_b(stack_a, stack_b);
+	// solve_three_a(stack_a);
+	// while (*stack_b)
+	push_back_to_a(stack_a, stack_b);
 }
