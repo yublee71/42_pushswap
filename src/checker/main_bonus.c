@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:32:49 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/16 16:45:30 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 17:34:07 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,39 +38,43 @@ static void	exec_operation(int i, t_stack **stack_a, t_stack **stack_b)
 		reverse_rotate_ab(stack_a, stack_b);
 }
 
-static void	find_and_exec_operation(t_stack **stack_a, t_stack **stack_b)
+static void	find_and_exec_op(t_stack **stack_a, t_stack **stack_b, char *op[11])
 {
-	char		*buf;
-	static char	*op[11] = {"pa\n", "pb\n", "sa\n", "sb\n", "ss\n",
-		"ra\n", "rb\n", "rr\n", "rra\n", "rrb\n", "rrr\n"};
-	int			i;
+	char	*buf;
+	int		i;
 
 	while (1)
 	{
 		buf = get_next_line(0);
 		if (!buf)
 			break ;
-		i = 0;
-		while (i < 11)
-		{
+		i = -1;
+		while (++i < 11)
 			if (!ft_strncmp(buf, op[i], ft_strlen(op[i])))
 				break ;
-			i++;
-		}
 		free(buf);
 		if (i < 11)
 			exec_operation(i, stack_a, stack_b);
 		else
+		{
+			close(0);
+			buf = get_next_line(0);
+			free(buf);
+			free_stack(stack_a);
+			free_stack(stack_b);
 			exit_with_error("Error\n", 1, NULL);
+		}
 	}
 }
 
 int	main(int argc, char *argv[])
 {
-	int		*input_int;
-	int		*rank_int;
-	t_stack	*head_a;
-	t_stack	*head_b;
+	int			*input_int;
+	int			*rank_int;
+	t_stack		*head_a;
+	t_stack		*head_b;
+	static char	*op[11] = {"pa\n", "pb\n", "sa\n", "sb\n", "ss\n",
+		"ra\n", "rb\n", "rr\n", "rra\n", "rrb\n", "rrr\n"};
 
 	if (argc == 1)
 		return (1);
@@ -82,7 +86,7 @@ int	main(int argc, char *argv[])
 	rank_int = ft_rank(input_int, argc - 1);
 	head_a = int_to_stack(input_int, rank_int, argc - 1);
 	head_b = NULL;
-	find_and_exec_operation(&head_a, &head_b);
+	find_and_exec_op(&head_a, &head_b, op);
 	if (!is_stack_sorted(&head_a) || head_b)
 		ft_printf("KO\n");
 	else
