@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:32:49 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/16 12:54:34 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 13:04:54 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	input_int = (int *)malloc((argc - 1) * sizeof(int));
 	if (!input_int)
-		exit_with_error("malloc", 1, NULL);
+		exit_with_error("malloc\n", 1, NULL);
 	ft_input_convert_to_int(argc, argv, input_int);
 	ft_input_duplicate_check(input_int, argc);
 	rank_int = ft_rank(input_int, argc - 1);

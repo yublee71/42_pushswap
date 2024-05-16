@@ -6,12 +6,11 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 14:16:49 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/16 12:44:25 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 13:04:39 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 bool	is_stack_sorted(t_stack **stack)
 {
@@ -47,13 +46,30 @@ void	ft_stack_print(t_stack **stack)
 	}
 }
 
+void	free_stack(t_stack **stack)
+{
+	t_stack	*current;
+	t_stack	*next;
+
+	if (!stack)
+		return ;
+	current = *stack;
+	while (current && !current->end)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	free(current);
+}
+
 t_stack	*ft_stacknew(int num, int rank)
 {
 	t_stack	*new_node;
 
 	new_node = (t_stack *)malloc(sizeof(t_stack));
 	if (!new_node)
-		return (NULL);
+		exit_with_error("malloc\n", 1, NULL);
 	new_node->num = num;
 	new_node->rank = rank;
 	new_node->location = 1;
@@ -72,19 +88,16 @@ t_stack	*ft_int_to_stack(int *input_int, int *rank, int num_of_int)
 
 	i = 0;
 	first_node = ft_stacknew(input_int[i], rank[i]);
-	i++;
 	current = first_node;
-	next = NULL;
-	while (i < num_of_int)
+	while (++i < num_of_int)
 	{
 		next = ft_stacknew(input_int[i], rank[i]);
 		current->next = next;
 		next->prev = current;
 		next->location = i + 1;
 		current = next;
-		i++;
 	}
-	if (next)
+	if (i > 1)
 	{
 		next->next = first_node;
 		next->end = 1;
@@ -93,21 +106,4 @@ t_stack	*ft_int_to_stack(int *input_int, int *rank, int num_of_int)
 	free(input_int);
 	free(rank);
 	return (first_node);
-}
-
-void	free_stack(t_stack **stack)
-{
-	t_stack	*current;
-	t_stack	*next;
-
-	if (!stack)
-		return ;
-	current = *stack;
-	while (current && !current->end)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	free(current);
 }
