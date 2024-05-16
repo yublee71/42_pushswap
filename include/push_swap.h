@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:02:08 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/16 14:26:46 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 14:53:25 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	input_duplicate_check(int *input_int, int argc);
 t_stack	*int_to_stack(int *input_int, int *rank, int argc);
 t_stack	*stack_new(int num, int rank);
 
+void	solve_three_a(t_stack **stack_a);
 void	solve_til_six(t_stack **stack_a, t_stack **stack_b);
 void	solve_big_numbers(t_stack **stack_a, t_stack **stack_b);
 t_move	calculate_move(t_stack **stack_a, t_stack **stack_b);
