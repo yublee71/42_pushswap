@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:12:26 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/16 12:49:24 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 12:50:54 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ void	ft_input_duplicate_check(int *input_int, int argc)
 		while (j < argc - 1)
 		{
 			if (input_int[i] == input_int[j])
-			{
-				free(input_int);
-				exit_with_error("Error\n", 1);
-			}
+				exit_with_error("Error\n", 1, input_int);
 			j++;
 		}
 		i++;
@@ -46,10 +43,7 @@ void	ft_input_convert_to_int(int argc, char *argv[], int *input_int)
 	while (++i < argc)
 	{
 		if (!ft_strlen(argv[i]))
-		{
-			free(input_int);
-			exit_with_error("Error\n", 1);
-		}
+			exit_with_error("Error\n", 1, input_int);
 		j = 0;
 		if (argv[i][j] == '0' && argv[i][j + 1])
 			error_flag = 1;
@@ -57,15 +51,10 @@ void	ft_input_convert_to_int(int argc, char *argv[], int *input_int)
 			&& argv[i][j + 1] != '0')
 			j++;
 		while (argv[i][j])
-		{
 			if (error_flag || !ft_isdigit(argv[i][j++]))
 				exit_with_error("Error\n", 1, input_int);
-		}
 		if ((long)ft_atoi(argv[i]) !=ft_long_atoi(argv[i]))
-		{
-			free(input_int);
-			exit_with_error("Error\n", 1);
-		}
+			exit_with_error("Error\n", 1, input_int);
 		input_int[i - 1] = ft_atoi(argv[i]);
 	}
 }
