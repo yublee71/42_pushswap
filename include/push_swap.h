@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:02:08 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/15 18:50:02 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 03:25:30 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ typedef struct s_stack
 	bool			end;
 }	t_stack;
 
-typedef struct s_id
+typedef struct s_info
 {
-	unsigned int	identifier;
-	char			*answer;
-}	t_id;
+	int	min;
+	int	i;
+}	t_info;
 
 void	ft_input_convert_to_int(int argc, char *argv[], int *input_int);
 void	ft_input_duplicate_check(int *input_int, int argc);

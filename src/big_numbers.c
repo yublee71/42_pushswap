@@ -6,19 +6,11 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 23:45:23 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/16 03:18:34 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 04:23:45 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-typedef struct s_info
-{
-	int	min;
-	int	i;
-}	t_info;
-
-
 
 static t_info	find_minimum_move(int move[4])
 {
@@ -143,8 +135,8 @@ static void	action_execute(t_stack **stack_a, t_stack **stack_b, t_info info, in
 //move = {r_a, rr_a, r_b, rr_b}
 static void	push_to_b(t_stack **stack_a, t_stack **stack_b)
 {
-	int		move[4] = {0};
-	int		min_move[4] = {0};
+	int		move[4];
+	int		min_move[4];
 	int		a_size;
 	int		b_size;
 	t_info	info;
@@ -157,7 +149,6 @@ static void	push_to_b(t_stack **stack_a, t_stack **stack_b)
 	while (*stack_a)
 	{
 		a_size = (*stack_a)->prev->location;
-		// ft_printf("a: %d\n", a_size);
 		move[0] = (current_a)->location - 1;
 		move[1] = a_size - (current_a)->location + 1;
 		if (*stack_b)
@@ -193,8 +184,6 @@ static void	push_to_b(t_stack **stack_a, t_stack **stack_b)
 			break ;
 		current_a = current_a->next;
 	}
-	// ft_printf("i: %d\n",min_info.i);
-	// ft_printf("move: %d\n",min_move[0]);
 	action_execute(stack_a, stack_b, min_info, min_move);
 }
 
@@ -233,70 +222,15 @@ static void	push_back_to_a(t_stack **stack_a, t_stack **stack_b)
 		push_a(stack_a, stack_b);
 }
 
-// static void	push_back_to_a(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	t_stack	*current_a;
-// 	int		ra;
-// 	int		rra;
-// 	int		a_size;
-
-// 	current_a = *stack_a;
-// 	a_size = (*stack_a)->prev->location;
-// 	while (*stack_b)
-// 	{
-// 		if ((*stack_b)->rank > find_maximum(stack_a)
-// 			|| (*stack_b)->rank < find_minimum(stack_a))
-// 		{
-// 			while (current_a->prev->rank < current_a->rank)
-// 					current_a = current_a->next;
-// 			ra = (current_a)->location - 1;
-// 			rra = a_size - (current_a)->location + 1;
-// 			if (ra > 0 && ra < rra)
-// 				while (ra--)
-// 					rotate_a(stack_a);
-// 			else if (rra > 0 && ra > rra)
-// 				while (rra--)
-// 					reverse_rotate_a(stack_a);
-// 			push_a(stack_a, stack_b);
-// 		}
-// 		else
-// 		{
-// 			while ((*stack_b) && (*stack_b)->rank < (*stack_a)->rank
-// 				&& (*stack_b)->rank > (*stack_a)->prev->rank)
-// 				push_a(stack_a, stack_b);
-// 			rotate_a(stack_a);
-// 		}
-// 	}
-// }
-
 void	solve_big_numbers(t_stack **stack_a, t_stack **stack_b)
 {
-	// t_stack	*current_a;
-	// int		ra;
-	// int		rra;
-	// int		a_size;
-
+	if (is_stack_sorted(stack_a))
+		return ;
 	push_b(stack_a, stack_b);
 	push_b(stack_a, stack_b);
 	if (is_stack_sorted(stack_b))
 		swap_b(stack_b);
-	// while ((*stack_a)->prev->location > 3)
 	while ((*stack_a))
 		push_to_b(stack_a, stack_b);
-	// solve_three_a(stack_a);
-	// ft_stack_print(stack_b);
-	// while (*stack_b)
-		push_back_to_a(stack_a, stack_b);
-	// current_a = *stack_a;
-	// a_size = (*stack_a)->prev->location;
-	// while (current_a->prev->rank < current_a->rank)
-	// 	current_a = current_a->next;
-	// ra = (current_a)->location - 1;
-	// rra = a_size - (current_a)->location + 1;
-	// if (ra > 0 && ra < rra)
-	// 	while (ra--)
-	// 		rotate_a(stack_a);
-	// else if (rra > 0 && ra > rra)
-	// 	while (rra--)
-	// 		reverse_rotate_a(stack_a);
+	push_back_to_a(stack_a, stack_b);
 }

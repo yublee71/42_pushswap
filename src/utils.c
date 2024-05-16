@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 23:19:47 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 23:44:44 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 03:56:41 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	exit_with_error(const char *str, int exit_no)
 {
-	ft_printf("%s", str);
+	(void)str;
+	write(2, "Error\n", 6);
 	exit(exit_no);
 }
 

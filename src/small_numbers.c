@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:24:09 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/15 22:52:44 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 04:22:18 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	solve_til_six(t_stack **stack_a, t_stack **stack_b)
 	while (((*stack_a)->prev)->location > 3)
 		push_b(stack_a, stack_b);
 	solve_three_a(stack_a);
-	if (!is_stack_sorted(stack_b))
+	if ((*stack_b) && !is_stack_sorted(stack_b))
 	{
 		if ((*stack_b)->prev->location == 2)
 			swap_b(stack_b);
