@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 14:16:49 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/14 23:39:25 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 12:44:25 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ bool	is_stack_sorted(t_stack **stack)
 	t_stack	*temp;
 
 	temp = *stack;
-	while (!temp->end)
+	while (temp && !temp->end)
 	{
-		if (temp->rank > (temp->next)->rank)
+		if ((temp->next) && temp->rank > (temp->next)->rank)
 			return (0);
 		temp = temp->next;
 	}
@@ -74,6 +74,7 @@ t_stack	*ft_int_to_stack(int *input_int, int *rank, int num_of_int)
 	first_node = ft_stacknew(input_int[i], rank[i]);
 	i++;
 	current = first_node;
+	next = NULL;
 	while (i < num_of_int)
 	{
 		next = ft_stacknew(input_int[i], rank[i]);
@@ -83,9 +84,12 @@ t_stack	*ft_int_to_stack(int *input_int, int *rank, int num_of_int)
 		current = next;
 		i++;
 	}
-	next->next = first_node;
-	next->end = 1;
-	(first_node)->prev = next;
+	if (next)
+	{
+		next->next = first_node;
+		next->end = 1;
+		(first_node)->prev = next;
+	}
 	free(input_int);
 	free(rank);
 	return (first_node);

@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:12:26 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/16 04:05:40 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 12:49:24 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_input_convert_to_int(int argc, char *argv[], int *input_int)
 	int	j;
 	int	error_flag;
 
-// needs check for max int
 	i = 0;
 	error_flag = 0;
 	while (++i < argc)
@@ -60,10 +59,12 @@ void	ft_input_convert_to_int(int argc, char *argv[], int *input_int)
 		while (argv[i][j])
 		{
 			if (error_flag || !ft_isdigit(argv[i][j++]))
-			{
-				free(input_int);
-				exit_with_error("Error\n", 1);
-			}
+				exit_with_error("Error\n", 1, input_int);
+		}
+		if ((long)ft_atoi(argv[i]) !=ft_long_atoi(argv[i]))
+		{
+			free(input_int);
+			exit_with_error("Error\n", 1);
 		}
 		input_int[i - 1] = ft_atoi(argv[i]);
 	}
