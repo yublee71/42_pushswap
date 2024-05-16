@@ -6,13 +6,13 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:24:09 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/16 04:22:18 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 13:11:43 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	move_consecutive(t_stack **stack_a, t_stack **stack_b)
+static void	move_consecutive(t_stack **stack_a, t_stack **stack_b)
 {
 	while ((*stack_b) && (*stack_b)->rank - (*stack_a)-> rank == 1)
 	{
@@ -21,7 +21,7 @@ void	move_consecutive(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-void	solve_three_a(t_stack **stack_a)
+static void	solve_three_a(t_stack **stack_a)
 {
 	int		rank1;
 	int		rank2;
@@ -50,7 +50,7 @@ void	solve_three_a(t_stack **stack_a)
 	}
 }
 
-void	solve_three_b(t_stack **stack_b)
+static void	solve_three_b(t_stack **stack_b)
 {
 	int		rank1;
 	int		rank2;

@@ -6,137 +6,90 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 23:45:23 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/16 04:23:45 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 13:43:38 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_info	find_minimum_move(int move[4])
+static t_info	find_minimum_move(t_move move)
 {
 	int		cases[4];
 	int		i;
 	t_info	info;
 
-	i = 0;
+	if (move.ra > move.rb)
+		cases[0] = move.ra;
+	else
+		cases[0] = move.rb;
+	cases[1] = move.ra + move.rrb;
+	if (move.rra > move.rrb)
+		cases[2] = move.rra;
+	else
+		cases[2] = move.rrb;
+	cases[3] = move.rra + move.rb;
+	i = -1;
 	info.min = INT_MAX;
-	info.i = 0;
-	if (move[0] > move[2])
-		cases[0] = move[0];
-	else
-		cases[0] = move[2];
-	cases[1] = move[0] + move[3];
-	if (move[1] > move[3])
-		cases[2] = move[1];
-	else
-		cases[2] = move[3];
-	cases[3] = move[1] + move[2];
-	while (i < 4)
+	while (++i < 4)
 	{
 		if (cases[i] < info.min)
 		{
 			info.min = cases[i];
 			info.i = i;
 		}
-		i++;
 	}
 	return (info);
 }
 
-static int	find_minimum(t_stack **stack)
-{
-	int		min;
-	t_stack	*current;
-
-	min = 0;
-	if (*stack)
-	{
-		min = INT_MAX;
-		current = *stack;
-	}
-	while (*stack)
-	{
-		if (current->rank < min)
-			min = current->rank;
-		if (current->end == 1)
-			break ;
-		current = current->next;
-	}
-	return (min);
-}
-
-static int	find_maximum(t_stack **stack)
-{
-	int		max;
-	t_stack	*current;
-
-	max = 0;
-	if (*stack)
-	{
-		max = INT_MIN;
-		current = *stack;
-	}
-	while (*stack)
-	{
-		if (current->rank > max)
-			max = current->rank;
-		if (current->end == 1)
-			break ;
-		current = current->next;
-	}
-	return (max);
-}
-
-static void	action_execute(t_stack **stack_a, t_stack **stack_b, t_info info, int move[4])
+static void	action_execute(t_stack **stack_a, t_stack **stack_b, t_info info, t_move move)
 {
 	if (info.i == 0)
 	{
-		while (move[2] > 0 && move[0] > 0)
+		while (move.rb > 0 && move.ra > 0)
 		{
 			rotate_ab(stack_a, stack_b);
-			move[0]--;
-			move[2]--;
+			move.ra--;
+			move.rb--;
 		}
-		while (move[0]-- > 0)
+		while (move.ra-- > 0)
 			rotate_a(stack_a);
-		while (move[2]-- > 0)
+		while (move.rb-- > 0)
 			rotate_b(stack_b);
 	}
 	else if (info.i == 1)
 	{
-		while (move[0]-- > 0)
+		while (move.ra-- > 0)
 			rotate_a(stack_a);
-		while (move[3]-- > 0)
+		while (move.rrb-- > 0)
 			reverse_rotate_b(stack_b);
 	}
 	else if (info.i == 2)
 	{
-		while (move[3] > 0 && move[1] > 0)
+		while (move.rrb > 0 && move.rra > 0)
 		{
 			reverse_rotate_ab(stack_a, stack_b);
-			move[1]--;
-			move[3]--;
+			move.rra--;
+			move.rrb--;
 		}
-		while (move[1]-- > 0)
+		while (move.rra-- > 0)
 			reverse_rotate_a(stack_a);
-		while (move[3]-- > 0)
+		while (move.rrb-- > 0)
 			reverse_rotate_b(stack_b);
 	}
 	else if (info.i == 3)
 	{
-		while (move[1]-- > 0)
+		while (move.rra-- > 0)
 			reverse_rotate_a(stack_a);
-		while (move[2]-- > 0)
+		while (move.rb-- > 0)
 			rotate_b(stack_b);
 	}
 	push_b(stack_a, stack_b);
 }
 
-//move = {r_a, rr_a, r_b, rr_b}
 static void	push_to_b(t_stack **stack_a, t_stack **stack_b)
 {
-	int		move[4];
-	int		min_move[4];
+	t_move	move;
+	t_move	min_move;
 	int		a_size;
 	int		b_size;
 	t_info	info;
@@ -149,8 +102,8 @@ static void	push_to_b(t_stack **stack_a, t_stack **stack_b)
 	while (*stack_a)
 	{
 		a_size = (*stack_a)->prev->location;
-		move[0] = (current_a)->location - 1;
-		move[1] = a_size - (current_a)->location + 1;
+		move.ra = (current_a)->location - 1;
+		move.rra = a_size - (current_a)->location + 1;
 		if (*stack_b)
 		{
 			current_b = (*stack_b);
@@ -167,18 +120,14 @@ static void	push_to_b(t_stack **stack_a, t_stack **stack_b)
 					|| current_b->prev->rank < current_a->rank)
 					current_b = current_b->next;
 			}
-			move[2] = (current_b)->location - 1;
-			move[3] = b_size - (current_b)->location + 1;
+			move.rb = (current_b)->location - 1;
+			move.rrb = b_size - (current_b)->location + 1;
 		}
 		info = find_minimum_move(move);
 		if (info.min < min_info.min)
 		{
-			min_info.min = info.min;
-			min_info.i = info.i;
-			min_move[0] = move[0];
-			min_move[1] = move[1];
-			min_move[2] = move[2];
-			min_move[3] = move[3];
+			min_info = info;
+			min_move = move;
 		}
 		if (current_a->end == 1)
 			break ;

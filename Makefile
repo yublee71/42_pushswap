@@ -6,7 +6,7 @@
 #    By: yublee <yublee@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 15:30:54 by yublee            #+#    #+#              #
-#    Updated: 2024/05/15 23:17:20 by yublee           ###   ########.fr        #
+#    Updated: 2024/05/16 13:21:01 by yublee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,16 +28,16 @@ INCLUDE = -I include/
 
 NAME = push_swap
 
-#needs editing later
-SRC = src/input_process.c \
-	src/main.c \
+SRC = src/main.c \
+	src/input_process.c \
+	src/stack_create.c \
+	src/stack_utils.c \
+	src/small_numbers.c \
+	src/big_numbers.c \
 	src/action/rotate.c \
 	src/action/reverse_rotate.c \
 	src/action/swap.c \
 	src/action/push.c \
-	src/stack_process.c \
-	src/small_numbers.c \
-	src/big_numbers.c \
 	src/utils.c \
 
 OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)

@@ -6,14 +6,14 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:12:26 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/16 12:56:25 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 13:17:34 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-void	ft_input_duplicate_check(int *input_int, int argc)
+void	input_duplicate_check(int *input_int, int argc)
 {
 	int	i;
 	int	j;
@@ -32,7 +32,7 @@ void	ft_input_duplicate_check(int *input_int, int argc)
 	}
 }
 
-void	ft_input_convert_to_int(int argc, char *argv[], int *input_int)
+void	input_convert_to_int(int argc, char *argv[], int *input_int)
 {
 	int	i;
 	int	j;

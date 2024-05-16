@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_process.c                                    :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 14:16:49 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/16 13:04:39 by yublee           ###   ########.fr       */
+/*   Created: 2024/05/16 13:10:08 by yublee            #+#    #+#             */
+/*   Updated: 2024/05/16 13:18:29 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	is_stack_sorted(t_stack **stack)
 	return (1);
 }
 
-void	ft_stack_print(t_stack **stack)
+void	stack_print(t_stack **stack)
 {
 	t_stack	*temp;
 
@@ -63,47 +63,46 @@ void	free_stack(t_stack **stack)
 	free(current);
 }
 
-t_stack	*ft_stacknew(int num, int rank)
+int	find_minimum(t_stack **stack)
 {
-	t_stack	*new_node;
+	int		min;
+	t_stack	*current;
 
-	new_node = (t_stack *)malloc(sizeof(t_stack));
-	if (!new_node)
-		exit_with_error("malloc\n", 1, NULL);
-	new_node->num = num;
-	new_node->rank = rank;
-	new_node->location = 1;
-	new_node->end = 0;
-	new_node->next = NULL;
-	new_node->prev = NULL;
-	return (new_node);
+	min = 0;
+	if (*stack)
+	{
+		min = INT_MAX;
+		current = *stack;
+	}
+	while (*stack)
+	{
+		if (current->rank < min)
+			min = current->rank;
+		if (current->end == 1)
+			break ;
+		current = current->next;
+	}
+	return (min);
 }
 
-t_stack	*ft_int_to_stack(int *input_int, int *rank, int num_of_int)
+int	find_maximum(t_stack **stack)
 {
-	t_stack	*first_node;
+	int		max;
 	t_stack	*current;
-	t_stack	*next;
-	int		i;
 
-	i = 0;
-	first_node = ft_stacknew(input_int[i], rank[i]);
-	current = first_node;
-	while (++i < num_of_int)
+	max = 0;
+	if (*stack)
 	{
-		next = ft_stacknew(input_int[i], rank[i]);
-		current->next = next;
-		next->prev = current;
-		next->location = i + 1;
-		current = next;
+		max = INT_MIN;
+		current = *stack;
 	}
-	if (i > 1)
+	while (*stack)
 	{
-		next->next = first_node;
-		next->end = 1;
-		(first_node)->prev = next;
+		if (current->rank > max)
+			max = current->rank;
+		if (current->end == 1)
+			break ;
+		current = current->next;
 	}
-	free(input_int);
-	free(rank);
-	return (first_node);
+	return (max);
 }
