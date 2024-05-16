@@ -6,7 +6,7 @@
 #    By: yublee <yublee@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 15:30:54 by yublee            #+#    #+#              #
-#    Updated: 2024/05/16 13:21:01 by yublee           ###   ########.fr        #
+#    Updated: 2024/05/16 14:26:05 by yublee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC = src/main.c \
 	src/stack_utils.c \
 	src/small_numbers.c \
 	src/big_numbers.c \
+	src/big_numbers_utils.c \
 	src/action/rotate.c \
 	src/action/reverse_rotate.c \
 	src/action/swap.c \

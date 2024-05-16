@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:10:08 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/16 13:18:29 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 14:13:09 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,11 @@ void	free_stack(t_stack **stack)
 	free(current);
 }
 
-int	find_minimum(t_stack **stack)
+t_stack	*find_minimum(t_stack **stack)
 {
 	int		min;
 	t_stack	*current;
+	t_stack	*min_node;
 
 	min = 0;
 	if (*stack)
@@ -77,18 +78,22 @@ int	find_minimum(t_stack **stack)
 	while (*stack)
 	{
 		if (current->rank < min)
+		{
 			min = current->rank;
+			min_node = current;
+		}
 		if (current->end == 1)
 			break ;
 		current = current->next;
 	}
-	return (min);
+	return (min_node);
 }
 
-int	find_maximum(t_stack **stack)
+t_stack	*find_maximum(t_stack **stack)
 {
 	int		max;
 	t_stack	*current;
+	t_stack	*max_node;
 
 	max = 0;
 	if (*stack)
@@ -99,10 +104,13 @@ int	find_maximum(t_stack **stack)
 	while (*stack)
 	{
 		if (current->rank > max)
+		{
 			max = current->rank;
+			max_node = current;
+		}
 		if (current->end == 1)
 			break ;
 		current = current->next;
 	}
-	return (max);
+	return (max_node);
 }
