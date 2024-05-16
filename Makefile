@@ -6,11 +6,11 @@
 #    By: yublee <yublee@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 15:30:54 by yublee            #+#    #+#              #
-#    Updated: 2024/05/16 14:26:05 by yublee           ###   ########.fr        #
+#    Updated: 2024/05/16 16:40:47 by yublee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-DIRS := src/action
+DIRS := src/push_swap/action src/checker
 
 CC = cc
 
@@ -28,20 +28,33 @@ INCLUDE = -I include/
 
 NAME = push_swap
 
-SRC = src/main.c \
-	src/input_process.c \
-	src/stack_create.c \
-	src/stack_utils.c \
-	src/small_numbers.c \
-	src/big_numbers.c \
-	src/big_numbers_utils.c \
-	src/action/rotate.c \
-	src/action/reverse_rotate.c \
-	src/action/swap.c \
-	src/action/push.c \
-	src/utils.c \
+BONUS_NAME = checker
+
+SRC = src/push_swap/main.c \
+	src/push_swap/input_process.c \
+	src/push_swap/stack_create.c \
+	src/push_swap/stack_utils.c \
+	src/push_swap/small_numbers.c \
+	src/push_swap/big_numbers.c \
+	src/push_swap/big_numbers_utils.c \
+	src/push_swap/action/rotate.c \
+	src/push_swap/action/reverse_rotate.c \
+	src/push_swap/action/swap.c \
+	src/push_swap/action/push.c \
+	src/push_swap/utils.c \
+
+BONUS_SRC = src/checker/main_bonus.c \
+	src/push_swap/input_process.c \
+	src/push_swap/stack_create.c \
+	src/push_swap/stack_utils.c \
+	src/push_swap/action/rotate.c \
+	src/push_swap/action/reverse_rotate.c \
+	src/push_swap/action/swap.c \
+	src/push_swap/action/push.c \
+	src/push_swap/utils.c \
 
 OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)
+BONUS_OBJ = $(BONUS_SRC:%.c=$(BUILD_DIR)/%.o)
 
 LIBFT_DIR = ./libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
@@ -62,6 +75,11 @@ $(BUILD_DIR):
 $(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@
 
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME): $(LIBFT_LIB) $(BUILD_DIR) $(BONUS_OBJ)
+	$(CC) -L$(LIBFT_DIR) $(BONUS_OBJ) -g -o $@ -lft
+
 clean:
 	$(RM) -rf $(BUILD_DIR)
 	make -C $(LIBFT_DIR) clean
@@ -69,7 +87,8 @@ clean:
 fclean: clean
 	$(RM) $(RMFLAGS) $(NAME)
 	$(RM) $(RMFLAGS) $(LIBFT_LIB)
+	$(RM) $(RMFLAGS) $(BONUS_NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

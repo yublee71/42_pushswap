@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:21:04 by yublee            #+#    #+#             */
-/*   Updated: 2023/11/20 14:31:13 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 16:33:14 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,23 @@ void	ft_putnbr(int nb);
 int		base_is(char *base);
 void	ft_putunsignednbr_base(long unsigned int nbr, char *base);
 void	ft_putstr(char *str);
+
+/*gnl*/
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
+
+# define FDMAX 1024
+
+# include <fcntl.h>
+
+char	*get_next_line(int fd);
+char	*ft_gnl_substr(char *s, size_t start, size_t len);
+char	*ft_f_strjoin(char *s1, char *s2);
+char	*ft_store_until_newline(char *stored);
+void	*ft_free(char **s1, char *s2);
+char	*ft_initialize(char *stored, int fd);
+size_t	ft_charcheck(char *s, char c);
+char	*ft_malloc(size_t n);
 
 #endif
