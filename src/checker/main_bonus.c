@@ -6,7 +6,7 @@
 /*   By: yublee <yublee@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:32:49 by yublee            #+#    #+#             */
-/*   Updated: 2024/05/16 16:35:16 by yublee           ###   ########.fr       */
+/*   Updated: 2024/05/16 16:45:30 by yublee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	find_and_exec_operation(t_stack **stack_a, t_stack **stack_b)
 {
 	char		*buf;
 	static char	*op[11] = {"pa\n", "pb\n", "sa\n", "sb\n", "ss\n",
-	"ra\n", "rb\n", "rr\n", "rra\n", "rrb\n", "rrr\n"};
+		"ra\n", "rb\n", "rr\n", "rra\n", "rrb\n", "rrr\n"};
 	int			i;
 
 	while (1)

@@ -6,11 +6,11 @@
 #    By: yublee <yublee@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 15:30:54 by yublee            #+#    #+#              #
-#    Updated: 2024/05/16 16:40:47 by yublee           ###   ########.fr        #
+#    Updated: 2024/05/16 16:54:14 by yublee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-DIRS := src/push_swap/action src/checker
+DIRS := src/push_swap/action src/checker/action
 
 CC = cc
 
@@ -44,13 +44,13 @@ SRC = src/push_swap/main.c \
 	src/push_swap/utils.c \
 
 BONUS_SRC = src/checker/main_bonus.c \
+	src/checker/action/rotate_bonus.c \
+	src/checker/action/reverse_rotate_bonus.c \
+	src/checker/action/swap_bonus.c \
+	src/checker/action/push_bonus.c \
 	src/push_swap/input_process.c \
 	src/push_swap/stack_create.c \
 	src/push_swap/stack_utils.c \
-	src/push_swap/action/rotate.c \
-	src/push_swap/action/reverse_rotate.c \
-	src/push_swap/action/swap.c \
-	src/push_swap/action/push.c \
 	src/push_swap/utils.c \
 
 OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)
